@@ -1,0 +1,136 @@
+<mujoco model="tennis_scene">
+  <compiler angle="radian" />
+  <option timestep="0.0005" gravity="0 0 -9.81" wind="0 0 0" density="0" integrator="implicitfast" />
+  <visual>
+    <global offwidth="1920" offheight="1080" />
+    <quality shadowsize="4096" />
+    <map fogstart="18" fogend="45" />
+    <headlight ambient="0.25 0.25 0.25" diffuse="0.35 0.35 0.35" specular="0.1 0.1 0.1" />
+  </visual>
+  <default>
+    <default class="g1">
+      <site rgba="1 0 0 1" size="0.01" group="5" />
+      <joint armature="0.01" frictionloss="0.3" />
+      <position kp="500" dampratio="1" inheritrange="1" />
+      <default class="visual">
+        <geom group="2" type="mesh" contype="0" conaffinity="0" density="0" material="metal" />
+      </default>
+      <default class="collision">
+        <geom group="3" type="mesh" />
+        <default class="foot">
+          <geom type="sphere" size="0.005" priority="1" friction="0.6" condim="3" />
+        </default>
+      </default>
+    </default>
+  </default>
+  <asset>
+    <texture name="skybox" type="skybox" builtin="gradient" rgb1="0.35 0.55 0.85" rgb2="0.82 0.88 0.95" width="800" height="600" />
+    <material name="court_blue" rgba="0.118 0.310 0.620 1" specular="0.25" shininess="0.35" reflectance="0.05" />
+    <material name="court_green" rgba="0.200 0.430 0.235 1" specular="0.2" shininess="0.3" reflectance="0.04" />
+    <material name="court_green_dark" rgba="0.160 0.360 0.190 1" specular="0.15" shininess="0.25" />
+    <material name="line_white" rgba="0.92 0.92 0.92 1" specular="0.3" shininess="0.4" />
+    <material name="net_dark" rgba="0.16 0.16 0.18 0.38" specular="0.05" shininess="0.0" />
+    <material name="post_dark" rgba="0.10 0.10 0.12 1" specular="0.4" shininess="0.5" />
+    <material name="machine_body" rgba="0.22 0.24 0.26 1" specular="0.4" shininess="0.5" />
+    <material name="machine_accent" rgba="0.85 0.45 0.10 1" specular="0.4" shininess="0.5" />
+    <material name="machine_wheel" rgba="0.10 0.10 0.11 1" specular="0.4" shininess="0.5" />
+    <material name="machine_barrel" rgba="0.30 0.32 0.34 1" specular="0.4" shininess="0.5" />
+    <material name="black" rgba="0.2 0.2 0.2 1" />
+    <material name="metal" rgba="0.7 0.7 0.7 1" />
+    <mesh file="g1/assets/pelvis.STL" />
+    <mesh file="g1/assets/pelvis_contour_link.STL" />
+    <mesh file="g1/assets/left_hip_pitch_link.STL" />
+    <mesh file="g1/assets/left_hip_roll_link.STL" />
+    <mesh file="g1/assets/left_hip_yaw_link.STL" />
+    <mesh file="g1/assets/left_knee_link.STL" />
+    <mesh file="g1/assets/left_ankle_pitch_link.STL" />
+    <mesh file="g1/assets/left_ankle_roll_link.STL" />
+    <mesh file="g1/assets/right_hip_pitch_link.STL" />
+    <mesh file="g1/assets/right_hip_roll_link.STL" />
+    <mesh file="g1/assets/right_hip_yaw_link.STL" />
+    <mesh file="g1/assets/right_knee_link.STL" />
+    <mesh file="g1/assets/right_ankle_pitch_link.STL" />
+    <mesh file="g1/assets/right_ankle_roll_link.STL" />
+    <mesh name="waist_yaw_link" file="g1/assets/waist_yaw_link_rev_1_0.STL" />
+    <mesh name="waist_roll_link" file="g1/assets/waist_roll_link_rev_1_0.STL" />
+    <mesh name="torso_link" file="g1/assets/torso_link_rev_1_0.STL" />
+    <mesh file="g1/assets/logo_link.STL" />
+    <mesh file="g1/assets/head_link.STL" />
+    <mesh file="g1/assets/left_shoulder_pitch_link.STL" />
+    <mesh file="g1/assets/left_shoulder_roll_link.STL" />
+    <mesh file="g1/assets/left_shoulder_yaw_link.STL" />
+    <mesh file="g1/assets/left_elbow_link.STL" />
+    <mesh file="g1/assets/left_wrist_roll_link.STL" />
+    <mesh file="g1/assets/left_wrist_pitch_link.STL" />
+    <mesh file="g1/assets/left_wrist_yaw_link.STL" />
+    <mesh file="g1/assets/left_rubber_hand.STL" />
+    <mesh file="g1/assets/right_shoulder_pitch_link.STL" />
+    <mesh file="g1/assets/right_shoulder_roll_link.STL" />
+    <mesh file="g1/assets/right_shoulder_yaw_link.STL" />
+    <mesh file="g1/assets/right_elbow_link.STL" />
+    <mesh file="g1/assets/right_wrist_roll_link.STL" />
+    <mesh file="g1/assets/right_wrist_pitch_link.STL" />
+    <mesh file="g1/assets/right_wrist_yaw_link.STL" />
+    <mesh file="g1/assets/right_rubber_hand.STL" />
+    <texture name="tex_ball" type="2d" file="ball_seam.png" />
+    <material name="ball_mat" texture="tex_ball" specular="0.35" shininess="0.5" />
+  </asset>
+  <worldbody>
+    <light name="court_light_key" pos="18 -14 22" dir="-0.55 0.45 -1" directional="true" castshadow="true" diffuse="0.85 0.82 0.78" specular="0.3 0.3 0.3" />
+    <light name="court_light_fill" pos="-16 12 18" dir="0.5 -0.4 -1" directional="true" castshadow="false" diffuse="0.35 0.37 0.42" specular="0.1 0.1 0.1" />
+    <body name="court_ground">
+      <geom name="ground" pos="0.00000 0.00000 -0.15000" size="22.00000 12.00000 0.15000" type="box" material="court_green" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+      <geom name="apron_inner" pos="0.00000 0.00000 0.00200" size="14.88500 8.08500 0.00200" type="box" material="court_green_dark" contype="0" conaffinity="0" group="1" />
+      <geom name="court_surface" pos="0.00000 0.00000 0.00400" size="11.88500 5.48500 0.00300" type="box" material="court_blue" contype="0" conaffinity="0" group="1" />
+    </body>
+    <geom name="baseline_0" pos="-11.88500 0.00000 0.00850" size="0.05000 5.48500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="service_line_0" pos="-6.40000 0.00000 0.00850" size="0.02500 4.11500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="center_mark_0" pos="-11.68500 0.00000 0.00850" size="0.15000 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="baseline_1" pos="11.88500 0.00000 0.00850" size="0.05000 5.48500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="service_line_1" pos="6.40000 0.00000 0.00850" size="0.02500 4.11500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="center_mark_1" pos="11.68500 0.00000 0.00850" size="0.15000 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="center_service_line" pos="0.00000 0.00000 0.00850" size="6.40000 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="singles_line_0" pos="0.00000 -4.11500 0.00850" size="11.88500 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="doubles_line_0" pos="0.00000 -5.48500 0.00850" size="11.88500 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="singles_line_1" pos="0.00000 4.11500 0.00850" size="11.88500 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="doubles_line_1" pos="0.00000 5.48500 0.00850" size="11.88500 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="net_collision_01" pos="0.00000 -5.94286 0.52465" size="0.02000 0.45714 0.52465" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_02" pos="0.00000 -5.02857 0.50555" size="0.02000 0.45714 0.50555" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_03" pos="0.00000 -4.11429 0.48963" size="0.02000 0.45714 0.48963" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_04" pos="0.00000 -3.20000 0.47690" size="0.02000 0.45714 0.47690" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_05" pos="0.00000 -2.28571 0.46735" size="0.02000 0.45714 0.46735" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_06" pos="0.00000 -1.37143 0.46098" size="0.02000 0.45714 0.46098" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_07" pos="0.00000 -0.45714 0.45780" size="0.02000 0.45714 0.45780" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_08" pos="0.00000 0.45714 0.45780" size="0.02000 0.45714 0.45780" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_09" pos="0.00000 1.37143 0.46098" size="0.02000 0.45714 0.46098" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_10" pos="0.00000 2.28571 0.46735" size="0.02000 0.45714 0.46735" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_11" pos="0.00000 3.20000 0.47690" size="0.02000 0.45714 0.47690" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_12" pos="0.00000 4.11429 0.48963" size="0.02000 0.45714 0.48963" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_13" pos="0.00000 5.02857 0.50555" size="0.02000 0.45714 0.50555" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_14" pos="0.00000 5.94286 0.52465" size="0.02000 0.45714 0.52465" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_visual_01" pos="0.00000 -5.94286 0.52465" size="0.00500 0.45714 0.52465" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_02" pos="0.00000 -5.02857 0.50555" size="0.00500 0.45714 0.50555" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_03" pos="0.00000 -4.11429 0.48963" size="0.00500 0.45714 0.48963" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_04" pos="0.00000 -3.20000 0.47690" size="0.00500 0.45714 0.47690" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_05" pos="0.00000 -2.28571 0.46735" size="0.00500 0.45714 0.46735" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_06" pos="0.00000 -1.37143 0.46098" size="0.00500 0.45714 0.46098" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_07" pos="0.00000 -0.45714 0.45780" size="0.00500 0.45714 0.45780" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_08" pos="0.00000 0.45714 0.45780" size="0.00500 0.45714 0.45780" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_09" pos="0.00000 1.37143 0.46098" size="0.00500 0.45714 0.46098" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_10" pos="0.00000 2.28571 0.46735" size="0.00500 0.45714 0.46735" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_11" pos="0.00000 3.20000 0.47690" size="0.00500 0.45714 0.47690" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_12" pos="0.00000 4.11429 0.48963" size="0.00500 0.45714 0.48963" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_13" pos="0.00000 5.02857 0.50555" size="0.00500 0.45714 0.50555" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_14" pos="0.00000 5.94286 0.52465" size="0.00500 0.45714 0.52465" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_post_neg" pos="0.0000 -6.4000 0.5350" size="0.035 0.5350" type="cylinder" material="post_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_band_neg" pos="0.0000 -3.2000 1.0450" size="0.006 3.2000 0.025" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="net_post_pos" pos="0.0000 6.4000 0.5350" size="0.035 0.5350" type="cylinder" material="post_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_band_pos" pos="0.0000 3.2000 1.0450" size="0.006 3.2000 0.025" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="net_center_strap" pos="0.0000 0 0.4570" size="0.006 0.02 0.4570" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <body name="ball" pos="0.000000 -8.000000 0.033500">
+      <freejoint name="ball_joint" />
+      <inertial pos="0 0 0" mass="0.0577" diaginertia="4.32100000e-05 4.32100000e-05 4.32100000e-05" />
+      <geom name="ball_geom" type="sphere" size="0.0335" material="ball_mat" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    </body>
+  </worldbody>
+</mujoco>

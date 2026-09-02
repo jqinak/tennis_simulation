@@ -1,0 +1,72 @@
+<mujoco model="tennis_court">
+  <compiler angle="radian" />
+  <option timestep="0.0005" gravity="0 0 -9.81" wind="0 0 0" density="0" />
+  <visual>
+    <global offwidth="1920" offheight="1080" />
+  </visual>
+  <visual>
+    <quality shadowsize="4096" />
+  </visual>
+  <asset>
+    <texture name="skybox" type="skybox" builtin="gradient" rgb1="0.35 0.55 0.85" rgb2="0.82 0.88 0.95" width="800" height="600" />
+    <material name="court_blue" rgba="0.118 0.310 0.620 1" specular="0.25" shininess="0.35" reflectance="0.05" />
+    <material name="court_green" rgba="0.200 0.430 0.235 1" specular="0.2" shininess="0.3" reflectance="0.04" />
+    <material name="court_green_dark" rgba="0.160 0.360 0.190 1" specular="0.15" shininess="0.25" />
+    <material name="line_white" rgba="0.92 0.92 0.92 1" specular="0.3" shininess="0.4" />
+    <material name="net_dark" rgba="0.16 0.16 0.18 0.38" specular="0.05" shininess="0.0" />
+    <material name="post_dark" rgba="0.10 0.10 0.12 1" specular="0.4" shininess="0.5" />
+  </asset>
+  <worldbody>
+    <light name="court_light_key" pos="18 -14 22" dir="-0.55 0.45 -1" directional="true" castshadow="true" diffuse="0.85 0.82 0.78" specular="0.3 0.3 0.3" />
+    <light name="court_light_fill" pos="-16 12 18" dir="0.5 -0.4 -1" directional="true" castshadow="false" diffuse="0.35 0.37 0.42" specular="0.1 0.1 0.1" />
+    <body name="court_ground">
+      <geom name="ground" pos="0.00000 0.00000 -0.15000" size="22.00000 12.00000 0.15000" type="box" material="court_green" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+      <geom name="apron_inner" pos="0.00000 0.00000 0.00200" size="14.88500 8.08500 0.00200" type="box" material="court_green_dark" contype="0" conaffinity="0" group="1" />
+      <geom name="court_surface" pos="0.00000 0.00000 0.00400" size="11.88500 5.48500 0.00300" type="box" material="court_blue" contype="0" conaffinity="0" group="1" />
+    </body>
+    <geom name="baseline_0" pos="-11.88500 0.00000 0.00850" size="0.05000 5.48500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="service_line_0" pos="-6.40000 0.00000 0.00850" size="0.02500 4.11500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="center_mark_0" pos="-11.68500 0.00000 0.00850" size="0.15000 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="baseline_1" pos="11.88500 0.00000 0.00850" size="0.05000 5.48500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="service_line_1" pos="6.40000 0.00000 0.00850" size="0.02500 4.11500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="center_mark_1" pos="11.68500 0.00000 0.00850" size="0.15000 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="center_service_line" pos="0.00000 0.00000 0.00850" size="6.40000 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="singles_line_0" pos="0.00000 -4.11500 0.00850" size="11.88500 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="doubles_line_0" pos="0.00000 -5.48500 0.00850" size="11.88500 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="singles_line_1" pos="0.00000 4.11500 0.00850" size="11.88500 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="doubles_line_1" pos="0.00000 5.48500 0.00850" size="11.88500 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="net_collision_01" pos="0.00000 -5.94286 0.52465" size="0.02000 0.45714 0.52465" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_02" pos="0.00000 -5.02857 0.50555" size="0.02000 0.45714 0.50555" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_03" pos="0.00000 -4.11429 0.48963" size="0.02000 0.45714 0.48963" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_04" pos="0.00000 -3.20000 0.47690" size="0.02000 0.45714 0.47690" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_05" pos="0.00000 -2.28571 0.46735" size="0.02000 0.45714 0.46735" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_06" pos="0.00000 -1.37143 0.46098" size="0.02000 0.45714 0.46098" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_07" pos="0.00000 -0.45714 0.45780" size="0.02000 0.45714 0.45780" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_08" pos="0.00000 0.45714 0.45780" size="0.02000 0.45714 0.45780" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_09" pos="0.00000 1.37143 0.46098" size="0.02000 0.45714 0.46098" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_10" pos="0.00000 2.28571 0.46735" size="0.02000 0.45714 0.46735" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_11" pos="0.00000 3.20000 0.47690" size="0.02000 0.45714 0.47690" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_12" pos="0.00000 4.11429 0.48963" size="0.02000 0.45714 0.48963" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_13" pos="0.00000 5.02857 0.50555" size="0.02000 0.45714 0.50555" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_14" pos="0.00000 5.94286 0.52465" size="0.02000 0.45714 0.52465" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_visual_01" pos="0.00000 -5.94286 0.52465" size="0.00500 0.45714 0.52465" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_02" pos="0.00000 -5.02857 0.50555" size="0.00500 0.45714 0.50555" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_03" pos="0.00000 -4.11429 0.48963" size="0.00500 0.45714 0.48963" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_04" pos="0.00000 -3.20000 0.47690" size="0.00500 0.45714 0.47690" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_05" pos="0.00000 -2.28571 0.46735" size="0.00500 0.45714 0.46735" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_06" pos="0.00000 -1.37143 0.46098" size="0.00500 0.45714 0.46098" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_07" pos="0.00000 -0.45714 0.45780" size="0.00500 0.45714 0.45780" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_08" pos="0.00000 0.45714 0.45780" size="0.00500 0.45714 0.45780" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_09" pos="0.00000 1.37143 0.46098" size="0.00500 0.45714 0.46098" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_10" pos="0.00000 2.28571 0.46735" size="0.00500 0.45714 0.46735" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_11" pos="0.00000 3.20000 0.47690" size="0.00500 0.45714 0.47690" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_12" pos="0.00000 4.11429 0.48963" size="0.00500 0.45714 0.48963" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_13" pos="0.00000 5.02857 0.50555" size="0.00500 0.45714 0.50555" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_visual_14" pos="0.00000 5.94286 0.52465" size="0.00500 0.45714 0.52465" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_post_neg" pos="0.0000 -6.4000 0.5350" size="0.035 0.5350" type="cylinder" material="post_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_band_neg" pos="0.0000 -3.2000 1.0450" size="0.006 3.2000 0.025" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="net_post_pos" pos="0.0000 6.4000 0.5350" size="0.035 0.5350" type="cylinder" material="post_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_band_pos" pos="0.0000 3.2000 1.0450" size="0.006 3.2000 0.025" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="net_center_strap" pos="0.0000 0 0.4570" size="0.006 0.02 0.4570" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+  </worldbody>
+</mujoco>
