@@ -281,9 +281,17 @@ def check_machine():
     _orig_rng_method = machine.serve
 
     def serve_seeded(target_xy, mode="flat", speed=None, spin_rpm=None):
+        cfg = _bm.SERVE_MODES[mode]
         state = np.random.get_state()
         np.random.seed(int(machine_rng.integers(0, 2**31 - 1)))
         try:
+            # BallMachine.serve draws from an unseeded default_rng(); draw the
+            # speed/spin here instead so the check is reproducible while keeping
+            # the exact same uniform distributions.
+            if speed is None:
+                speed = float(np.random.uniform(*cfg["speed"]))
+            if spin_rpm is None:
+                spin_rpm = float(np.random.uniform(*cfg["spin_rpm"]))
             return _orig_rng_method(target_xy, mode=mode, speed=speed, spin_rpm=spin_rpm)
         finally:
             np.random.set_state(state)
@@ -296,7 +304,7 @@ def check_machine():
     max_err = 0.0
     for tx, ty, mode in targets:
         target = np.array([tx + rng.uniform(-0.3, 0.3), ty + rng.uniform(-0.3, 0.3)])
-        plan = machine.serve(target, mode=mode)
+        plan = serve_seeded(target, mode=mode)
         sim.ctrl.reset()
 
         def stop(s):

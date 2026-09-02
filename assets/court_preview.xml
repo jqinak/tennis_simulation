@@ -8,19 +8,34 @@
     <quality shadowsize="4096" />
   </visual>
   <asset>
-    <texture name="skybox" type="skybox" builtin="gradient" rgb1="0.35 0.55 0.85" rgb2="0.82 0.88 0.95" width="800" height="600" />
-    <material name="court_blue" rgba="0.118 0.310 0.620 1" specular="0.25" shininess="0.35" reflectance="0.05" />
-    <material name="court_green" rgba="0.200 0.430 0.235 1" specular="0.2" shininess="0.3" reflectance="0.04" />
-    <material name="court_green_dark" rgba="0.160 0.360 0.190 1" specular="0.15" shininess="0.25" />
+    <texture name="skybox" type="skybox" file="sky/skybox.png" gridsize="3 4" gridlayout="..U.LFRB.D.." />
+    <texture name="tex_court" type="2d" file="textures/court_surface.png" />
+    <material name="court_blue" texture="tex_court" texrepeat="12 6" rgba="0.118 0.310 0.620 1" specular="0.25" shininess="0.35" reflectance="0.05" />
+    <texture name="tex_apron" type="2d" file="textures/court_apron.png" />
+    <material name="court_green_dark" texture="tex_apron" texrepeat="15 8" rgba="0.160 0.360 0.190 1" specular="0.15" shininess="0.25" />
+    <texture name="tex_ground" type="2d" file="textures/court_ground.png" />
+    <material name="court_green" texture="tex_ground" texrepeat="22 12" rgba="0.200 0.430 0.235 1" specular="0.2" shininess="0.3" reflectance="0.04" />
     <material name="line_white" rgba="0.92 0.92 0.92 1" specular="0.3" shininess="0.4" />
     <material name="net_dark" rgba="0.16 0.16 0.18 0.38" specular="0.05" shininess="0.0" />
     <material name="post_dark" rgba="0.10 0.10 0.12 1" specular="0.4" shininess="0.5" />
+    <material name="windscreen" rgba="0.058 0.105 0.068 1" specular="0.08" shininess="0.1" />
+    <material name="fence_mesh" rgba="0.42 0.46 0.45 0.40" specular="0.2" shininess="0.3" />
+    <material name="fence_frame" rgba="0.20 0.22 0.21 1" specular="0.3" shininess="0.4" />
+    <material name="chair_green" rgba="0.086 0.30 0.17 1" specular="0.3" shininess="0.4" />
+    <material name="bench_metal" rgba="0.23 0.24 0.26 1" specular="0.4" shininess="0.5" />
+    <material name="bench_slat" rgba="0.88 0.88 0.85 1" specular="0.2" shininess="0.3" />
+    <material name="pole_gray" rgba="0.34 0.36 0.39 1" specular="0.35" shininess="0.4" />
+    <material name="pole_head" rgba="0.11 0.12 0.13 1" specular="0.4" shininess="0.5" />
+    <material name="lamp_white" rgba="0.97 0.97 0.92 1" specular="0.5" shininess="0.6" />
+    <material name="cart_accent" rgba="0.80 0.42 0.10 1" specular="0.4" shininess="0.5" />
+    <material name="outer_ground" rgba="0.115 0.185 0.115 1" specular="0.1" shininess="0.15" />
+    <material name="banner_blue" rgba="0.10 0.20 0.45 1" specular="0.2" shininess="0.3" />
   </asset>
   <worldbody>
     <light name="court_light_key" pos="18 -14 22" dir="-0.55 0.45 -1" directional="true" castshadow="true" diffuse="0.85 0.82 0.78" specular="0.3 0.3 0.3" />
     <light name="court_light_fill" pos="-16 12 18" dir="0.5 -0.4 -1" directional="true" castshadow="false" diffuse="0.35 0.37 0.42" specular="0.1 0.1 0.1" />
     <body name="court_ground">
-      <geom name="ground" pos="0.00000 0.00000 -0.15000" size="22.00000 12.00000 0.15000" type="box" material="court_green" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+      <geom name="ground" pos="0.00000 0.00000 -0.15000" size="22.00000 12.00000 0.15000" type="box" material="court_green" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
       <geom name="apron_inner" pos="0.00000 0.00000 0.00200" size="14.88500 8.08500 0.00200" type="box" material="court_green_dark" contype="0" conaffinity="0" group="1" />
       <geom name="court_surface" pos="0.00000 0.00000 0.00400" size="11.88500 5.48500 0.00300" type="box" material="court_blue" contype="0" conaffinity="0" group="1" />
     </body>
@@ -35,20 +50,20 @@
     <geom name="doubles_line_0" pos="0.00000 -5.48500 0.00850" size="11.88500 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
     <geom name="singles_line_1" pos="0.00000 4.11500 0.00850" size="11.88500 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
     <geom name="doubles_line_1" pos="0.00000 5.48500 0.00850" size="11.88500 0.02500 0.00050" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
-    <geom name="net_collision_01" pos="0.00000 -5.94286 0.52465" size="0.02000 0.45714 0.52465" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
-    <geom name="net_collision_02" pos="0.00000 -5.02857 0.50555" size="0.02000 0.45714 0.50555" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
-    <geom name="net_collision_03" pos="0.00000 -4.11429 0.48963" size="0.02000 0.45714 0.48963" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
-    <geom name="net_collision_04" pos="0.00000 -3.20000 0.47690" size="0.02000 0.45714 0.47690" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
-    <geom name="net_collision_05" pos="0.00000 -2.28571 0.46735" size="0.02000 0.45714 0.46735" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
-    <geom name="net_collision_06" pos="0.00000 -1.37143 0.46098" size="0.02000 0.45714 0.46098" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
-    <geom name="net_collision_07" pos="0.00000 -0.45714 0.45780" size="0.02000 0.45714 0.45780" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
-    <geom name="net_collision_08" pos="0.00000 0.45714 0.45780" size="0.02000 0.45714 0.45780" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
-    <geom name="net_collision_09" pos="0.00000 1.37143 0.46098" size="0.02000 0.45714 0.46098" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
-    <geom name="net_collision_10" pos="0.00000 2.28571 0.46735" size="0.02000 0.45714 0.46735" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
-    <geom name="net_collision_11" pos="0.00000 3.20000 0.47690" size="0.02000 0.45714 0.47690" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
-    <geom name="net_collision_12" pos="0.00000 4.11429 0.48963" size="0.02000 0.45714 0.48963" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
-    <geom name="net_collision_13" pos="0.00000 5.02857 0.50555" size="0.02000 0.45714 0.50555" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
-    <geom name="net_collision_14" pos="0.00000 5.94286 0.52465" size="0.02000 0.45714 0.52465" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 0.12" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_01" pos="0.00000 -5.94286 0.52465" size="0.02000 0.45714 0.52465" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_02" pos="0.00000 -5.02857 0.50555" size="0.02000 0.45714 0.50555" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_03" pos="0.00000 -4.11429 0.48963" size="0.02000 0.45714 0.48963" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_04" pos="0.00000 -3.20000 0.47690" size="0.02000 0.45714 0.47690" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_05" pos="0.00000 -2.28571 0.46735" size="0.02000 0.45714 0.46735" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_06" pos="0.00000 -1.37143 0.46098" size="0.02000 0.45714 0.46098" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_07" pos="0.00000 -0.45714 0.45780" size="0.02000 0.45714 0.45780" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_08" pos="0.00000 0.45714 0.45780" size="0.02000 0.45714 0.45780" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_09" pos="0.00000 1.37143 0.46098" size="0.02000 0.45714 0.46098" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_10" pos="0.00000 2.28571 0.46735" size="0.02000 0.45714 0.46735" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_11" pos="0.00000 3.20000 0.47690" size="0.02000 0.45714 0.47690" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_12" pos="0.00000 4.11429 0.48963" size="0.02000 0.45714 0.48963" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_13" pos="0.00000 5.02857 0.50555" size="0.02000 0.45714 0.50555" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
+    <geom name="net_collision_14" pos="0.00000 5.94286 0.52465" size="0.02000 0.45714 0.52465" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
     <geom name="net_visual_01" pos="0.00000 -5.94286 0.52465" size="0.00500 0.45714 0.52465" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
     <geom name="net_visual_02" pos="0.00000 -5.02857 0.50555" size="0.00500 0.45714 0.50555" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
     <geom name="net_visual_03" pos="0.00000 -4.11429 0.48963" size="0.00500 0.45714 0.48963" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
@@ -68,5 +83,116 @@
     <geom name="net_post_pos" pos="0.0000 6.4000 0.5350" size="0.035 0.5350" type="cylinder" material="post_dark" contype="0" conaffinity="0" group="1" />
     <geom name="net_band_pos" pos="0.0000 3.2000 1.0450" size="0.006 3.2000 0.025" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
     <geom name="net_center_strap" pos="0.0000 0 0.4570" size="0.006 0.02 0.4570" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="outer_ground_visual" type="box" pos="0.0000 0.0000 -0.0080" size="42.0000 30.0000 0.0040" material="outer_ground" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_north_mesh" type="box" pos="0.0000 9.8000 0.5000" size="16.2000 0.0120 0.4200" material="fence_mesh" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_north_rail_100" type="box" pos="0.0000 9.8000 1.0000" size="16.2000 0.0350 0.0350" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_north_rail_10" type="box" pos="0.0000 9.8000 0.1000" size="16.2000 0.0350 0.0350" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_north_post_0" type="cylinder" pos="-16.2000 9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_north_post_1" type="cylinder" pos="-12.9600 9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_north_post_2" type="cylinder" pos="-9.7200 9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_north_post_3" type="cylinder" pos="-6.4800 9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_north_post_4" type="cylinder" pos="-3.2400 9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_north_post_5" type="cylinder" pos="0.0000 9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_north_post_6" type="cylinder" pos="3.2400 9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_north_post_7" type="cylinder" pos="6.4800 9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_north_post_8" type="cylinder" pos="9.7200 9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_north_post_9" type="cylinder" pos="12.9600 9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_north_post_10" type="cylinder" pos="16.2000 9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_south_mesh" type="box" pos="0.0000 -9.8000 0.5000" size="16.2000 0.0120 0.4200" material="fence_mesh" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_south_rail_100" type="box" pos="0.0000 -9.8000 1.0000" size="16.2000 0.0350 0.0350" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_south_rail_10" type="box" pos="0.0000 -9.8000 0.1000" size="16.2000 0.0350 0.0350" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_south_post_0" type="cylinder" pos="-16.2000 -9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_south_post_1" type="cylinder" pos="-12.9600 -9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_south_post_2" type="cylinder" pos="-9.7200 -9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_south_post_3" type="cylinder" pos="-6.4800 -9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_south_post_4" type="cylinder" pos="-3.2400 -9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_south_post_5" type="cylinder" pos="0.0000 -9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_south_post_6" type="cylinder" pos="3.2400 -9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_south_post_7" type="cylinder" pos="6.4800 -9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_south_post_8" type="cylinder" pos="9.7200 -9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_south_post_9" type="cylinder" pos="12.9600 -9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_south_post_10" type="cylinder" pos="16.2000 -9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_east_mesh" type="box" pos="16.2000 0.0000 0.5000" size="0.0120 9.8000 0.4200" material="fence_mesh" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_east_rail_100" type="box" pos="16.2000 0.0000 1.0000" size="0.0350 9.8000 0.0350" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_east_rail_10" type="box" pos="16.2000 0.0000 0.1000" size="0.0350 9.8000 0.0350" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_east_post_0" type="cylinder" pos="16.2000 -9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_east_post_1" type="cylinder" pos="16.2000 -6.5333 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_east_post_2" type="cylinder" pos="16.2000 -3.2667 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_east_post_3" type="cylinder" pos="16.2000 0.0000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_east_post_4" type="cylinder" pos="16.2000 3.2667 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_east_post_5" type="cylinder" pos="16.2000 6.5333 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="fence_east_post_6" type="cylinder" pos="16.2000 9.8000 0.5300" size="0.0320 0.5300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="backstop_panel" type="box" pos="-16.2000 0.0000 2.0000" size="0.0300 9.8000 1.9000" material="windscreen" contype="0" conaffinity="0" group="1" />
+    <geom name="backstop_band" type="box" pos="-16.2000 0.0000 3.8200" size="0.0360 9.8000 0.1600" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="backstop_banner" type="box" pos="-16.2000 0.0000 3.4800" size="0.0360 9.8000 0.1000" material="banner_blue" contype="0" conaffinity="0" group="1" />
+    <geom name="backstop_skirt" type="box" pos="-16.2000 0.0000 0.1500" size="0.0360 9.8000 0.3000" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="backstop_cap" type="box" pos="-16.2200 0.0000 4.0300" size="0.0500 9.8000 0.0300" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="backstop_post_0" type="cylinder" pos="-16.2600 -9.8000 2.0500" size="0.0500 2.0500" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="backstop_post_1" type="cylinder" pos="-16.2600 -6.5333 2.0500" size="0.0500 2.0500" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="backstop_post_2" type="cylinder" pos="-16.2600 -3.2667 2.0500" size="0.0500 2.0500" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="backstop_post_3" type="cylinder" pos="-16.2600 0.0000 2.0500" size="0.0500 2.0500" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="backstop_post_4" type="cylinder" pos="-16.2600 3.2667 2.0500" size="0.0500 2.0500" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="backstop_post_5" type="cylinder" pos="-16.2600 6.5333 2.0500" size="0.0500 2.0500" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <geom name="backstop_post_6" type="cylinder" pos="-16.2600 9.8000 2.0500" size="0.0500 2.0500" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    <body name="umpire_chair" pos="0.000 -7.400 0">
+      <geom name="chair_leg_-1_-1" type="capsule" fromto="-0.3000 -0.2600 0.0200 -0.2000 -0.1800 1.5200" size="0.0200" material="chair_green" contype="0" conaffinity="0" group="1" />
+      <geom name="chair_leg_1_-1" type="capsule" fromto="0.3000 -0.2600 0.0200 0.2000 -0.1800 1.5200" size="0.0200" material="chair_green" contype="0" conaffinity="0" group="1" />
+      <geom name="chair_leg_-1_1" type="capsule" fromto="-0.3000 0.2600 0.0200 -0.2000 0.1800 1.5200" size="0.0200" material="chair_green" contype="0" conaffinity="0" group="1" />
+      <geom name="chair_leg_1_1" type="capsule" fromto="0.3000 0.2600 0.0200 0.2000 0.1800 1.5200" size="0.0200" material="chair_green" contype="0" conaffinity="0" group="1" />
+      <geom name="chair_seat" type="box" pos="0.0000 0.0000 1.5600" size="0.1700 0.1500 0.0200" material="chair_green" contype="0" conaffinity="0" group="1" />
+      <geom name="chair_back" type="box" pos="0.0000 -0.2000 1.9800" size="0.1600 0.0200 0.2250" material="chair_green" contype="0" conaffinity="0" group="1" />
+      <geom name="chair_arm_-1" type="box" pos="0.0000 -0.1500 1.8800" size="0.1500 0.0150 0.0150" material="chair_green" contype="0" conaffinity="0" group="1" />
+      <geom name="chair_arm_1" type="box" pos="0.0000 0.1500 1.8800" size="0.1500 0.0150 0.0150" material="chair_green" contype="0" conaffinity="0" group="1" />
+      <geom name="chair_step_42" type="box" pos="0.0000 0.0000 0.4200" size="0.1500 0.1200 0.0150" material="chair_green" contype="0" conaffinity="0" group="1" />
+      <geom name="chair_step_88" type="box" pos="0.0000 0.0000 0.8800" size="0.1500 0.1200 0.0150" material="chair_green" contype="0" conaffinity="0" group="1" />
+    </body>
+    <body name="bench_133_69" pos="13.300 6.900 0">
+      <geom name="bench_133_69_seat" type="box" pos="0.0000 0.0000 0.4500" size="0.1600 0.8500 0.0200" material="bench_slat" contype="0" conaffinity="0" group="1" />
+      <geom name="bench_133_69_back" type="box" pos="0.1700 0.0000 0.8000" size="0.0200 0.8500 0.1400" material="bench_slat" contype="0" conaffinity="0" group="1" />
+      <geom name="bench_133_69_leg_-1" type="box" pos="0.0500 -0.7200 0.2200" size="0.1400 0.0250 0.2200" material="bench_metal" contype="0" conaffinity="0" group="1" />
+      <geom name="bench_133_69_leg_1" type="box" pos="0.0500 0.7200 0.2200" size="0.1400 0.0250 0.2200" material="bench_metal" contype="0" conaffinity="0" group="1" />
+    </body>
+    <body name="bench_133_-69" pos="13.300 -6.900 0">
+      <geom name="bench_133_-69_seat" type="box" pos="0.0000 0.0000 0.4500" size="0.1600 0.8500 0.0200" material="bench_slat" contype="0" conaffinity="0" group="1" />
+      <geom name="bench_133_-69_back" type="box" pos="0.1700 0.0000 0.8000" size="0.0200 0.8500 0.1400" material="bench_slat" contype="0" conaffinity="0" group="1" />
+      <geom name="bench_133_-69_leg_-1" type="box" pos="0.0500 -0.7200 0.2200" size="0.1400 0.0250 0.2200" material="bench_metal" contype="0" conaffinity="0" group="1" />
+      <geom name="bench_133_-69_leg_1" type="box" pos="0.0500 0.7200 0.2200" size="0.1400 0.0250 0.2200" material="bench_metal" contype="0" conaffinity="0" group="1" />
+    </body>
+    <body name="ball_cart" pos="-14.000 2.400 0">
+      <geom name="cart_basket" type="box" pos="0.0000 0.0000 0.6800" size="0.1700 0.2300 0.1100" material="cart_accent" contype="0" conaffinity="0" group="1" />
+      <geom name="cart_leg_-1_-1" type="cylinder" pos="-0.1300 -0.1800 0.3000" size="0.0220 0.2800" material="fence_frame" contype="0" conaffinity="0" group="1" />
+      <geom name="cart_wheel_-1_-1" type="cylinder" pos="-0.1300 -0.2000 0.0600" size="0.0600 0.0200" material="pole_head" contype="0" conaffinity="0" group="1" quat="0.7071 0 0.7071 0" />
+      <geom name="cart_leg_-1_1" type="cylinder" pos="-0.1300 0.1800 0.3000" size="0.0220 0.2800" material="fence_frame" contype="0" conaffinity="0" group="1" />
+      <geom name="cart_wheel_-1_1" type="cylinder" pos="-0.1300 0.2000 0.0600" size="0.0600 0.0200" material="pole_head" contype="0" conaffinity="0" group="1" quat="0.7071 0 0.7071 0" />
+      <geom name="cart_leg_1_-1" type="cylinder" pos="0.1300 -0.1800 0.3000" size="0.0220 0.2800" material="fence_frame" contype="0" conaffinity="0" group="1" />
+      <geom name="cart_wheel_1_-1" type="cylinder" pos="0.1300 -0.2000 0.0600" size="0.0600 0.0200" material="pole_head" contype="0" conaffinity="0" group="1" quat="0.7071 0 0.7071 0" />
+      <geom name="cart_leg_1_1" type="cylinder" pos="0.1300 0.1800 0.3000" size="0.0220 0.2800" material="fence_frame" contype="0" conaffinity="0" group="1" />
+      <geom name="cart_wheel_1_1" type="cylinder" pos="0.1300 0.2000 0.0600" size="0.0600 0.0200" material="pole_head" contype="0" conaffinity="0" group="1" quat="0.7071 0 0.7071 0" />
+      <geom name="cart_handle" type="capsule" fromto="-0.3000 0.0000 0.8600 0.3000 0.0000 0.8600" size="0.0150" material="fence_frame" contype="0" conaffinity="0" group="1" />
+    </body>
+    <body name="light_pole_-1_-1" pos="-17.300 -10.700 0">
+      <geom name="light_pole_-1_-1_pole" type="cylinder" pos="0.0000 0.0000 3.3000" size="0.0900 3.3000" material="pole_gray" contype="0" conaffinity="0" group="1" />
+      <geom name="light_pole_-1_-1_arm" type="box" pos="0.3182 0.3182 6.4800" size="0.3500 0.0350 0.0350" material="pole_gray" contype="0" conaffinity="0" group="1" quat="0.96189 0 0 0.27343" />
+      <geom name="light_pole_-1_-1_head" type="box" pos="0.6010 0.6010 6.4000" size="0.2800 0.1300 0.0600" material="pole_head" contype="0" conaffinity="0" group="1" quat="0.96189 0 0 0.27343" />
+      <geom name="light_pole_-1_-1_lamp" type="box" pos="0.6010 0.6010 6.3400" size="0.2500 0.1100 0.0200" material="lamp_white" contype="0" conaffinity="0" group="1" quat="0.96189 0 0 0.27343" />
+    </body>
+    <body name="light_pole_-1_1" pos="-17.300 10.700 0">
+      <geom name="light_pole_-1_1_pole" type="cylinder" pos="0.0000 0.0000 3.3000" size="0.0900 3.3000" material="pole_gray" contype="0" conaffinity="0" group="1" />
+      <geom name="light_pole_-1_1_arm" type="box" pos="0.3182 -0.3182 6.4800" size="0.3500 0.0350 0.0350" material="pole_gray" contype="0" conaffinity="0" group="1" quat="0.96189 0 0 -0.27343" />
+      <geom name="light_pole_-1_1_head" type="box" pos="0.6010 -0.6010 6.4000" size="0.2800 0.1300 0.0600" material="pole_head" contype="0" conaffinity="0" group="1" quat="0.96189 0 0 -0.27343" />
+      <geom name="light_pole_-1_1_lamp" type="box" pos="0.6010 -0.6010 6.3400" size="0.2500 0.1100 0.0200" material="lamp_white" contype="0" conaffinity="0" group="1" quat="0.96189 0 0 -0.27343" />
+    </body>
+    <body name="light_pole_1_-1" pos="17.300 -10.700 0">
+      <geom name="light_pole_1_-1_pole" type="cylinder" pos="0.0000 0.0000 3.3000" size="0.0900 3.3000" material="pole_gray" contype="0" conaffinity="0" group="1" />
+      <geom name="light_pole_1_-1_arm" type="box" pos="-0.3182 0.3182 6.4800" size="0.3500 0.0350 0.0350" material="pole_gray" contype="0" conaffinity="0" group="1" quat="0.27343 0 0 0.96189" />
+      <geom name="light_pole_1_-1_head" type="box" pos="-0.6010 0.6010 6.4000" size="0.2800 0.1300 0.0600" material="pole_head" contype="0" conaffinity="0" group="1" quat="0.27343 0 0 0.96189" />
+      <geom name="light_pole_1_-1_lamp" type="box" pos="-0.6010 0.6010 6.3400" size="0.2500 0.1100 0.0200" material="lamp_white" contype="0" conaffinity="0" group="1" quat="0.27343 0 0 0.96189" />
+    </body>
+    <body name="light_pole_1_1" pos="17.300 10.700 0">
+      <geom name="light_pole_1_1_pole" type="cylinder" pos="0.0000 0.0000 3.3000" size="0.0900 3.3000" material="pole_gray" contype="0" conaffinity="0" group="1" />
+      <geom name="light_pole_1_1_arm" type="box" pos="-0.3182 -0.3182 6.4800" size="0.3500 0.0350 0.0350" material="pole_gray" contype="0" conaffinity="0" group="1" quat="0.27343 0 0 -0.96189" />
+      <geom name="light_pole_1_1_head" type="box" pos="-0.6010 -0.6010 6.4000" size="0.2800 0.1300 0.0600" material="pole_head" contype="0" conaffinity="0" group="1" quat="0.27343 0 0 -0.96189" />
+      <geom name="light_pole_1_1_lamp" type="box" pos="-0.6010 -0.6010 6.3400" size="0.2500 0.1100 0.0200" material="lamp_white" contype="0" conaffinity="0" group="1" quat="0.27343 0 0 -0.96189" />
+    </body>
   </worldbody>
 </mujoco>

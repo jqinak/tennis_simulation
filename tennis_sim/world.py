@@ -1,3 +1,4 @@
+import math
 import os
 import xml.etree.ElementTree as ET
 
@@ -23,6 +24,22 @@ MACHINE_MATERIALS = {
     "machine_wheel": "0.10 0.10 0.11 1",
     "machine_barrel": "0.30 0.32 0.34 1",
 }
+
+RACKET_MATERIALS = {
+    "racket_frame_black": "0.040 0.040 0.045 1",
+    "racket_grip_white": "0.93 0.93 0.93 1",
+}
+
+# Real 23-inch junior racket (ITF junior spec): overall length 0.5842 m,
+# black frame, white grip.
+RACKET_TOTAL_LENGTH = 0.5842
+RACKET_HEAD_CENTER_X = 0.425
+RACKET_HEAD_SEMI_A = 0.160
+RACKET_HEAD_SEMI_B = 0.125
+RACKET_GRIP_X0 = 0.02
+RACKET_GRIP_X1 = 0.20
+RACKET_WRIST_OFFSET_DEG = 25.0
+RACKET_MOUNT_QUAT = "0.300503 -0.683352 0.267845 -0.609087"
 
 
 def _fmt(vals):
@@ -118,24 +135,72 @@ def build_ball_xml(pos=(0.0, -8.0, C.BALL_RADIUS)):
 
 
 def build_racket_xml():
-    body = ET.Element("body", name="racket", pos="0.052 0 0",
-                      quat="0.300503 -0.683352 0.267845 -0.609087")
+    """Real 23" junior racket (0.5842 m, black frame, white grip) on a fixed
+    25-degree wrist-offset mount.
+
+    Dynamics preserved: same inertial (mass/diaginertia) and the same collision
+    geoms (``racket_handle`` capsule + ``racket_strings`` box) with unchanged
+    condim/friction/solref/solimp. The mount adds one fixed rotation at the
+    wrist (about the forearm/wrist-roll axis) as requested.
+    """
+    off = math.radians(RACKET_WRIST_OFFSET_DEG)
+    mount = ET.Element(
+        "body", name="racket_mount", pos="0.052 0 0",
+        quat=_fmt([math.cos(off / 2.0), math.sin(off / 2.0), 0.0, 0.0]))
+    body = ET.Element("body", name="racket", quat=RACKET_MOUNT_QUAT)
+    mount.append(body)
     _sub(body, "inertial", pos="0.331 0 0", mass="0.30",
          diaginertia="0.00082 0.0055 0.0063")
-    _sub(body, "geom", name="racket_handle", type="capsule", fromto="0.05 0 0 0.23 0 0",
-         size="0.016", material="machine_wheel", contype="1", conaffinity="1", condim="3",
+    _sub(body, "geom", name="racket_handle", type="capsule",
+         fromto="%.3f 0 0 %.3f 0 0" % (RACKET_GRIP_X0, RACKET_GRIP_X1),
+         size="0.016", material="racket_grip_white", contype="1", conaffinity="1", condim="3",
          friction="%s 0.005 0.0001" % C.GROUND_FRICTION, solref=C.CONTACT_SOLREF,
          solimp=C.CONTACT_SOLIMP, group="1")
-    _sub(body, "geom", name="racket_head_rim", type="ellipsoid", pos="0.415 0 0",
-         size="0.175 0.140 0.014", material="machine_accent", contype="0", conaffinity="0",
-         group="1")
-    _sub(body, "geom", name="racket_strings", type="box", pos="0.405 0 0",
-         size="0.155 0.118 0.012", material="line_white", rgba="0.95 0.95 0.9 0.25",
+    _sub(body, "geom", name="racket_butt", type="capsule", fromto="0 0 0 0.035 0 0",
+         size="0.019", material="racket_frame_black", contype="0", conaffinity="0", group="1")
+    for side in (-1, 1):
+        _sub(body, "geom", name="racket_throat_%d" % side, type="capsule",
+             fromto="0.196 %.3f 0 0.302 %.3f 0" % (side * 0.030, side * 0.079),
+             size="0.012", material="racket_frame_black", contype="0", conaffinity="0",
+             group="1")
+    cx, a, b = RACKET_HEAD_CENTER_X, RACKET_HEAD_SEMI_A, RACKET_HEAD_SEMI_B
+    n_rim = 14
+    pts = [(cx + a * math.cos(2 * math.pi * k / n_rim), b * math.sin(2 * math.pi * k / n_rim), 0.0)
+           for k in range(n_rim)]
+    for k in range(n_rim):
+        p0, p1 = pts[k], pts[(k + 1) % n_rim]
+        _sub(body, "geom", name="racket_rim_%02d" % k, type="capsule",
+             fromto="%.4f %.4f 0 %.4f %.4f 0" % (p0[0], p0[1], p1[0], p1[1]),
+             size="0.011", material="racket_frame_black", contype="0", conaffinity="0",
+             group="1")
+    _sub(body, "geom", name="racket_strings", type="box", pos="%.3f 0 0" % cx,
+         size="0.140 0.102 0.009", material="line_white", rgba="0.95 0.95 0.9 0.08",
          contype="1", conaffinity="1", condim="3",
          friction="%s 0.005 0.0001" % C.GROUND_FRICTION, solref=C.CONTACT_SOLREF,
          solimp=C.CONTACT_SOLIMP, group="1")
-    _sub(body, "site", name="racket_head_site", pos="0.415 0 0", size="0.012", rgba="0 1 0 0.5")
-    return body
+    n_main, n_cross = 9, 13
+    a_in, b_in = 0.148, 0.110
+    for k in range(n_main):
+        dx = -a_in + (2 * a_in) * (k + 0.5) / n_main
+        yh = b_in * math.sqrt(max(0.0, 1.0 - (dx / a_in) ** 2)) * 0.98
+        if yh < 0.012:
+            continue
+        _sub(body, "geom", name="racket_string_m%02d" % k, type="capsule",
+             fromto="%.4f %.4f 0 %.4f %.4f 0" % (cx + dx, -yh, cx + dx, yh),
+             size="0.0022", rgba="0.94 0.94 0.90 0.85", contype="0", conaffinity="0",
+             group="1")
+    for k in range(n_cross):
+        dy = -b_in + (2 * b_in) * (k + 0.5) / n_cross
+        xh = a_in * math.sqrt(max(0.0, 1.0 - (dy / b_in) ** 2)) * 0.98
+        if xh < 0.012:
+            continue
+        _sub(body, "geom", name="racket_string_c%02d" % k, type="capsule",
+             fromto="%.4f %.4f 0 %.4f %.4f 0" % (cx - xh, dy, cx + xh, dy),
+             size="0.0022", rgba="0.94 0.94 0.90 0.85", contype="0", conaffinity="0",
+             group="1")
+    _sub(body, "site", name="racket_head_site", pos="%.3f 0 0" % cx, size="0.012",
+         rgba="0 1 0 0.5")
+    return mount
 
 
 def _boost_arm_actuators(root):
@@ -210,6 +275,8 @@ def build_scene_string(robot=True, machine=True, ball=True,
     build_court.add_assets(asset)
     for name, rgba in MACHINE_MATERIALS.items():
         _sub(asset, "material", name=name, rgba=rgba, specular="0.4", shininess="0.5")
+    for name, rgba in RACKET_MATERIALS.items():
+        _sub(asset, "material", name=name, rgba=rgba, specular="0.45", shininess="0.6")
     g1_asset = g1_root.find("asset")
     for el in list(g1_asset):
         asset.append(el)
@@ -225,6 +292,7 @@ def build_scene_string(robot=True, machine=True, ball=True,
     build_court.add_ground(worldbody)
     build_court.add_lines(worldbody)
     build_court.add_net(worldbody)
+    build_court.add_decor(worldbody)
     if machine:
         worldbody.append(build_machine_xml(machine_pos, machine_yaw))
     if ball:

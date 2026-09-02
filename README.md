@@ -105,6 +105,17 @@ python scripts/record_video.py --camera rally --seconds 4.5 --out outputs/videos
 机位：`rally`（默认近景）/ `broadcast` / `side` / `behind_robot` / `robot_close` / `track_ball`。
 也可用 `tennis_sim.render.EpisodeRecorder` 包住任何 `env.run_episode(..., on_step=rec.on_step)`。
 
+## 场景装饰与可视化（纯渲染层，零物理影响）
+
+- 程序化天空立方体贴图（渐变 + 云层 + 太阳光晕，`tennis_sim/textures.py` 自动生成
+  `assets/sky/skybox.png`，失败时回退纯渐变）
+- 场地装饰（全部 contype=0 非碰撞）：围网 + 挡风背板、裁判椅、球员座椅、
+  捡球车、四角灯杆、外围大地面；场地/外围地面带程序化颗粒纹理
+- 网球拍：真实 23 英寸青少年拍（总长 0.584 m），黑色拍框 + 白色拍柄 + 线床，
+  腕部 +25° 固定偏移 mount（绕前臂/腕滚轴）；质量与碰撞参数保持不变
+- 球轨迹彗星尾（`render.BallTrail`，仅注入渲染 scene）：去球（发球机→机器人）
+  青色，回球（机器人击回）橙色，宽度/透明度渐隐；`Recorder(trail=False)` 可关闭
+
 ## 无 policy 的冒烟演示
 
 `tennis_sim/smoke_test.py`：
@@ -118,7 +129,8 @@ tennis_sim/
   constants.py        物理常量（标定后自动回写）
   aero.py             空气阻力 + Magnus + 自旋衰减（仿真与规划共用）
   bounce.py           反弹控制器：ITF 恢复系数/切向模型 + 球/网/拍事件检测
-  build_court.py      程序化生成 ITF 球场
+  build_court.py      程序化生成 ITF 球场 + 场景装饰
+  textures.py         程序化贴图（天空立方体贴图/场地颗粒纹理）
   world.py            场景组装（球场+G1+球拍+发球机+球 → assets/scene.xml）
   ball_machine.py     发球机（轨迹规划/过网净空/直接瞄准/穿越点喂球）
   env.py              Gym 风格环境 + policy 接口 + 事件流
