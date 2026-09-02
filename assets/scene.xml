@@ -25,11 +25,11 @@
   </default>
   <asset>
     <texture name="skybox" type="skybox" file="sky/skybox.png" gridsize="3 4" gridlayout="..U.LFRB.D.." />
-    <texture name="tex_court" type="2d" file="textures/court_surface.png" />
+    <texture name="tex_court" type="2d" file="textures/concrete_floor_painted_diff_4k.png" />
     <material name="court_blue" texture="tex_court" texrepeat="12 6" rgba="0.118 0.310 0.620 1" specular="0.25" shininess="0.35" reflectance="0.05" />
-    <texture name="tex_apron" type="2d" file="textures/court_apron.png" />
+    <texture name="tex_apron" type="2d" file="textures/concrete_floor_painted_diff_4k.png" />
     <material name="court_green_dark" texture="tex_apron" texrepeat="15 8" rgba="0.160 0.360 0.190 1" specular="0.15" shininess="0.25" />
-    <texture name="tex_ground" type="2d" file="textures/court_ground.png" />
+    <texture name="tex_ground" type="2d" file="textures/concrete_floor_painted_diff_4k.png" />
     <material name="court_green" texture="tex_ground" texrepeat="22 12" rgba="0.200 0.430 0.235 1" specular="0.2" shininess="0.3" reflectance="0.04" />
     <material name="line_white" rgba="0.92 0.92 0.92 1" specular="0.3" shininess="0.4" />
     <material name="net_dark" rgba="0.16 0.16 0.18 0.38" specular="0.05" shininess="0.0" />
@@ -93,7 +93,7 @@
     <material name="ball_mat" texture="tex_ball" specular="0.35" shininess="0.5" />
   </asset>
   <worldbody>
-    <light name="court_light_key" pos="18 -14 22" dir="-0.55 0.45 -1" directional="true" castshadow="true" diffuse="0.85 0.82 0.78" specular="0.3 0.3 0.3" />
+    <light name="court_light_key" pos="12 -33 29" dir="-0.2337 0.6403 -0.7317" directional="true" castshadow="true" diffuse="0.85 0.82 0.78" specular="0.3 0.3 0.3" />
     <light name="court_light_fill" pos="-16 12 18" dir="0.5 -0.4 -1" directional="true" castshadow="false" diffuse="0.35 0.37 0.42" specular="0.1 0.1 0.1" />
     <body name="court_ground">
       <geom name="ground" pos="0.00000 0.00000 -0.15000" size="22.00000 12.00000 0.15000" type="box" material="court_green" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
@@ -125,25 +125,459 @@
     <geom name="net_collision_12" pos="0.00000 4.11429 0.48963" size="0.02000 0.45714 0.48963" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
     <geom name="net_collision_13" pos="0.00000 5.02857 0.50555" size="0.02000 0.45714 0.50555" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
     <geom name="net_collision_14" pos="0.00000 5.94286 0.52465" size="0.02000 0.45714 0.52465" type="box" material="net_dark" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
-    <geom name="net_visual_01" pos="0.00000 -5.94286 0.52465" size="0.00500 0.45714 0.52465" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
-    <geom name="net_visual_02" pos="0.00000 -5.02857 0.50555" size="0.00500 0.45714 0.50555" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
-    <geom name="net_visual_03" pos="0.00000 -4.11429 0.48963" size="0.00500 0.45714 0.48963" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
-    <geom name="net_visual_04" pos="0.00000 -3.20000 0.47690" size="0.00500 0.45714 0.47690" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
-    <geom name="net_visual_05" pos="0.00000 -2.28571 0.46735" size="0.00500 0.45714 0.46735" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
-    <geom name="net_visual_06" pos="0.00000 -1.37143 0.46098" size="0.00500 0.45714 0.46098" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
-    <geom name="net_visual_07" pos="0.00000 -0.45714 0.45780" size="0.00500 0.45714 0.45780" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
-    <geom name="net_visual_08" pos="0.00000 0.45714 0.45780" size="0.00500 0.45714 0.45780" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
-    <geom name="net_visual_09" pos="0.00000 1.37143 0.46098" size="0.00500 0.45714 0.46098" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
-    <geom name="net_visual_10" pos="0.00000 2.28571 0.46735" size="0.00500 0.45714 0.46735" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
-    <geom name="net_visual_11" pos="0.00000 3.20000 0.47690" size="0.00500 0.45714 0.47690" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
-    <geom name="net_visual_12" pos="0.00000 4.11429 0.48963" size="0.00500 0.45714 0.48963" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
-    <geom name="net_visual_13" pos="0.00000 5.02857 0.50555" size="0.00500 0.45714 0.50555" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
-    <geom name="net_visual_14" pos="0.00000 5.94286 0.52465" size="0.00500 0.45714 0.52465" type="box" material="net_dark" contype="0" conaffinity="0" group="1" />
-    <geom name="net_post_neg" pos="0.0000 -6.4000 0.5350" size="0.035 0.5350" type="cylinder" material="post_dark" contype="0" conaffinity="0" group="1" />
-    <geom name="net_band_neg" pos="0.0000 -3.2000 1.0450" size="0.006 3.2000 0.025" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
-    <geom name="net_post_pos" pos="0.0000 6.4000 0.5350" size="0.035 0.5350" type="cylinder" material="post_dark" contype="0" conaffinity="0" group="1" />
-    <geom name="net_band_pos" pos="0.0000 3.2000 1.0450" size="0.006 3.2000 0.025" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
-    <geom name="net_center_strap" pos="0.0000 0 0.4570" size="0.006 0.02 0.4570" type="box" material="line_white" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_000" type="capsule" fromto="0 -6.4000 0.004 0 -6.4000 1.0700" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_001" type="capsule" fromto="0 -6.2720 0.004 0 -6.2720 1.0638" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_002" type="capsule" fromto="0 -6.1440 0.004 0 -6.1440 1.0578" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_003" type="capsule" fromto="0 -6.0160 0.004 0 -6.0160 1.0518" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_004" type="capsule" fromto="0 -5.8880 0.004 0 -5.8880 1.0460" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_005" type="capsule" fromto="0 -5.7600 0.004 0 -5.7600 1.0404" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_006" type="capsule" fromto="0 -5.6320 0.004 0 -5.6320 1.0348" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_007" type="capsule" fromto="0 -5.5040 0.004 0 -5.5040 1.0294" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_008" type="capsule" fromto="0 -5.3760 0.004 0 -5.3760 1.0241" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_009" type="capsule" fromto="0 -5.2480 0.004 0 -5.2480 1.0189" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_010" type="capsule" fromto="0 -5.1200 0.004 0 -5.1200 1.0138" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_011" type="capsule" fromto="0 -4.9920 0.004 0 -4.9920 1.0089" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_012" type="capsule" fromto="0 -4.8640 0.004 0 -4.8640 1.0041" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_013" type="capsule" fromto="0 -4.7360 0.004 0 -4.7360 0.9994" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_014" type="capsule" fromto="0 -4.6080 0.004 0 -4.6080 0.9949" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_015" type="capsule" fromto="0 -4.4800 0.004 0 -4.4800 0.9904" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_016" type="capsule" fromto="0 -4.3520 0.004 0 -4.3520 0.9861" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_017" type="capsule" fromto="0 -4.2240 0.004 0 -4.2240 0.9820" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_018" type="capsule" fromto="0 -4.0960 0.004 0 -4.0960 0.9779" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_019" type="capsule" fromto="0 -3.9680 0.004 0 -3.9680 0.9740" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_020" type="capsule" fromto="0 -3.8400 0.004 0 -3.8400 0.9702" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_021" type="capsule" fromto="0 -3.7120 0.004 0 -3.7120 0.9665" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_022" type="capsule" fromto="0 -3.5840 0.004 0 -3.5840 0.9629" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_023" type="capsule" fromto="0 -3.4560 0.004 0 -3.4560 0.9595" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_024" type="capsule" fromto="0 -3.3280 0.004 0 -3.3280 0.9562" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_025" type="capsule" fromto="0 -3.2000 0.004 0 -3.2000 0.9530" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_026" type="capsule" fromto="0 -3.0720 0.004 0 -3.0720 0.9499" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_027" type="capsule" fromto="0 -2.9440 0.004 0 -2.9440 0.9470" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_028" type="capsule" fromto="0 -2.8160 0.004 0 -2.8160 0.9442" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_029" type="capsule" fromto="0 -2.6880 0.004 0 -2.6880 0.9415" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_030" type="capsule" fromto="0 -2.5600 0.004 0 -2.5600 0.9390" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_031" type="capsule" fromto="0 -2.4320 0.004 0 -2.4320 0.9365" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_032" type="capsule" fromto="0 -2.3040 0.004 0 -2.3040 0.9342" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_033" type="capsule" fromto="0 -2.1760 0.004 0 -2.1760 0.9320" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_034" type="capsule" fromto="0 -2.0480 0.004 0 -2.0480 0.9300" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_035" type="capsule" fromto="0 -1.9200 0.004 0 -1.9200 0.9280" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_036" type="capsule" fromto="0 -1.7920 0.004 0 -1.7920 0.9262" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_037" type="capsule" fromto="0 -1.6640 0.004 0 -1.6640 0.9245" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_038" type="capsule" fromto="0 -1.5360 0.004 0 -1.5360 0.9230" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_039" type="capsule" fromto="0 -1.4080 0.004 0 -1.4080 0.9216" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_040" type="capsule" fromto="0 -1.2800 0.004 0 -1.2800 0.9202" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_041" type="capsule" fromto="0 -1.1520 0.004 0 -1.1520 0.9191" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_042" type="capsule" fromto="0 -1.0240 0.004 0 -1.0240 0.9180" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_043" type="capsule" fromto="0 -0.8960 0.004 0 -0.8960 0.9171" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_044" type="capsule" fromto="0 -0.7680 0.004 0 -0.7680 0.9162" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_045" type="capsule" fromto="0 -0.6400 0.004 0 -0.6400 0.9156" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_046" type="capsule" fromto="0 -0.5120 0.004 0 -0.5120 0.9150" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_047" type="capsule" fromto="0 -0.3840 0.004 0 -0.3840 0.9146" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_048" type="capsule" fromto="0 -0.2560 0.004 0 -0.2560 0.9142" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_049" type="capsule" fromto="0 -0.1280 0.004 0 -0.1280 0.9141" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_050" type="capsule" fromto="0 0.0000 0.004 0 0.0000 0.9140" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_051" type="capsule" fromto="0 0.1280 0.004 0 0.1280 0.9141" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_052" type="capsule" fromto="0 0.2560 0.004 0 0.2560 0.9142" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_053" type="capsule" fromto="0 0.3840 0.004 0 0.3840 0.9146" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_054" type="capsule" fromto="0 0.5120 0.004 0 0.5120 0.9150" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_055" type="capsule" fromto="0 0.6400 0.004 0 0.6400 0.9156" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_056" type="capsule" fromto="0 0.7680 0.004 0 0.7680 0.9162" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_057" type="capsule" fromto="0 0.8960 0.004 0 0.8960 0.9171" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_058" type="capsule" fromto="0 1.0240 0.004 0 1.0240 0.9180" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_059" type="capsule" fromto="0 1.1520 0.004 0 1.1520 0.9191" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_060" type="capsule" fromto="0 1.2800 0.004 0 1.2800 0.9202" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_061" type="capsule" fromto="0 1.4080 0.004 0 1.4080 0.9216" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_062" type="capsule" fromto="0 1.5360 0.004 0 1.5360 0.9230" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_063" type="capsule" fromto="0 1.6640 0.004 0 1.6640 0.9245" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_064" type="capsule" fromto="0 1.7920 0.004 0 1.7920 0.9262" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_065" type="capsule" fromto="0 1.9200 0.004 0 1.9200 0.9280" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_066" type="capsule" fromto="0 2.0480 0.004 0 2.0480 0.9300" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_067" type="capsule" fromto="0 2.1760 0.004 0 2.1760 0.9320" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_068" type="capsule" fromto="0 2.3040 0.004 0 2.3040 0.9342" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_069" type="capsule" fromto="0 2.4320 0.004 0 2.4320 0.9365" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_070" type="capsule" fromto="0 2.5600 0.004 0 2.5600 0.9390" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_071" type="capsule" fromto="0 2.6880 0.004 0 2.6880 0.9415" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_072" type="capsule" fromto="0 2.8160 0.004 0 2.8160 0.9442" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_073" type="capsule" fromto="0 2.9440 0.004 0 2.9440 0.9470" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_074" type="capsule" fromto="0 3.0720 0.004 0 3.0720 0.9499" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_075" type="capsule" fromto="0 3.2000 0.004 0 3.2000 0.9530" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_076" type="capsule" fromto="0 3.3280 0.004 0 3.3280 0.9562" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_077" type="capsule" fromto="0 3.4560 0.004 0 3.4560 0.9595" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_078" type="capsule" fromto="0 3.5840 0.004 0 3.5840 0.9629" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_079" type="capsule" fromto="0 3.7120 0.004 0 3.7120 0.9665" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_080" type="capsule" fromto="0 3.8400 0.004 0 3.8400 0.9702" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_081" type="capsule" fromto="0 3.9680 0.004 0 3.9680 0.9740" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_082" type="capsule" fromto="0 4.0960 0.004 0 4.0960 0.9779" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_083" type="capsule" fromto="0 4.2240 0.004 0 4.2240 0.9820" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_084" type="capsule" fromto="0 4.3520 0.004 0 4.3520 0.9861" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_085" type="capsule" fromto="0 4.4800 0.004 0 4.4800 0.9904" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_086" type="capsule" fromto="0 4.6080 0.004 0 4.6080 0.9949" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_087" type="capsule" fromto="0 4.7360 0.004 0 4.7360 0.9994" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_088" type="capsule" fromto="0 4.8640 0.004 0 4.8640 1.0041" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_089" type="capsule" fromto="0 4.9920 0.004 0 4.9920 1.0089" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_090" type="capsule" fromto="0 5.1200 0.004 0 5.1200 1.0138" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_091" type="capsule" fromto="0 5.2480 0.004 0 5.2480 1.0189" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_092" type="capsule" fromto="0 5.3760 0.004 0 5.3760 1.0241" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_093" type="capsule" fromto="0 5.5040 0.004 0 5.5040 1.0294" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_094" type="capsule" fromto="0 5.6320 0.004 0 5.6320 1.0348" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_095" type="capsule" fromto="0 5.7600 0.004 0 5.7600 1.0404" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_096" type="capsule" fromto="0 5.8880 0.004 0 5.8880 1.0460" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_097" type="capsule" fromto="0 6.0160 0.004 0 6.0160 1.0518" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_098" type="capsule" fromto="0 6.1440 0.004 0 6.1440 1.0578" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_099" type="capsule" fromto="0 6.2720 0.004 0 6.2720 1.0638" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_v_100" type="capsule" fromto="0 6.4000 0.004 0 6.4000 1.0700" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_00_01" type="capsule" fromto="0 -6.4000 0.0040 0 -5.4857 0.0040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_00_02" type="capsule" fromto="0 -5.4857 0.0040 0 -4.5714 0.0040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_00_03" type="capsule" fromto="0 -4.5714 0.0040 0 -3.6571 0.0040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_00_04" type="capsule" fromto="0 -3.6571 0.0040 0 -2.7429 0.0040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_00_05" type="capsule" fromto="0 -2.7429 0.0040 0 -1.8286 0.0040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_00_06" type="capsule" fromto="0 -1.8286 0.0040 0 -0.9143 0.0040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_00_07" type="capsule" fromto="0 -0.9143 0.0040 0 0.0000 0.0040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_00_08" type="capsule" fromto="0 0.0000 0.0040 0 0.9143 0.0040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_00_09" type="capsule" fromto="0 0.9143 0.0040 0 1.8286 0.0040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_00_10" type="capsule" fromto="0 1.8286 0.0040 0 2.7429 0.0040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_00_11" type="capsule" fromto="0 2.7429 0.0040 0 3.6571 0.0040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_00_12" type="capsule" fromto="0 3.6571 0.0040 0 4.5714 0.0040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_00_13" type="capsule" fromto="0 4.5714 0.0040 0 5.4857 0.0040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_00_14" type="capsule" fromto="0 5.4857 0.0040 0 6.4000 0.0040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_01_01" type="capsule" fromto="0 -6.4000 0.0486 0 -5.4857 0.0469" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_01_02" type="capsule" fromto="0 -5.4857 0.0469 0 -4.5714 0.0454" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_01_03" type="capsule" fromto="0 -4.5714 0.0454 0 -3.6571 0.0442" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_01_04" type="capsule" fromto="0 -3.6571 0.0442 0 -2.7429 0.0433" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_01_05" type="capsule" fromto="0 -2.7429 0.0433 0 -1.8286 0.0426" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_01_06" type="capsule" fromto="0 -1.8286 0.0426 0 -0.9143 0.0422" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_01_07" type="capsule" fromto="0 -0.9143 0.0422 0 0.0000 0.0421" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_01_08" type="capsule" fromto="0 0.0000 0.0421 0 0.9143 0.0422" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_01_09" type="capsule" fromto="0 0.9143 0.0422 0 1.8286 0.0426" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_01_10" type="capsule" fromto="0 1.8286 0.0426 0 2.7429 0.0433" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_01_11" type="capsule" fromto="0 2.7429 0.0433 0 3.6571 0.0442" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_01_12" type="capsule" fromto="0 3.6571 0.0442 0 4.5714 0.0454" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_01_13" type="capsule" fromto="0 4.5714 0.0454 0 5.4857 0.0469" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_01_14" type="capsule" fromto="0 5.4857 0.0469 0 6.4000 0.0486" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_02_01" type="capsule" fromto="0 -6.4000 0.0932 0 -5.4857 0.0897" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_02_02" type="capsule" fromto="0 -5.4857 0.0897 0 -4.5714 0.0868" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_02_03" type="capsule" fromto="0 -4.5714 0.0868 0 -3.6571 0.0844" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_02_04" type="capsule" fromto="0 -3.6571 0.0844 0 -2.7429 0.0826" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_02_05" type="capsule" fromto="0 -2.7429 0.0826 0 -1.8286 0.0812" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_02_06" type="capsule" fromto="0 -1.8286 0.0812 0 -0.9143 0.0804" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_02_07" type="capsule" fromto="0 -0.9143 0.0804 0 0.0000 0.0802" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_02_08" type="capsule" fromto="0 0.0000 0.0802 0 0.9143 0.0804" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_02_09" type="capsule" fromto="0 0.9143 0.0804 0 1.8286 0.0812" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_02_10" type="capsule" fromto="0 1.8286 0.0812 0 2.7429 0.0826" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_02_11" type="capsule" fromto="0 2.7429 0.0826 0 3.6571 0.0844" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_02_12" type="capsule" fromto="0 3.6571 0.0844 0 4.5714 0.0868" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_02_13" type="capsule" fromto="0 4.5714 0.0868 0 5.4857 0.0897" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_02_14" type="capsule" fromto="0 5.4857 0.0897 0 6.4000 0.0932" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_03_01" type="capsule" fromto="0 -6.4000 0.1378 0 -5.4857 0.1326" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_03_02" type="capsule" fromto="0 -5.4857 0.1326 0 -4.5714 0.1282" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_03_03" type="capsule" fromto="0 -4.5714 0.1282 0 -3.6571 0.1246" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_03_04" type="capsule" fromto="0 -3.6571 0.1246 0 -2.7429 0.1218" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_03_05" type="capsule" fromto="0 -2.7429 0.1218 0 -1.8286 0.1198" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_03_06" type="capsule" fromto="0 -1.8286 0.1198 0 -0.9143 0.1186" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_03_07" type="capsule" fromto="0 -0.9143 0.1186 0 0.0000 0.1183" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_03_08" type="capsule" fromto="0 0.0000 0.1183 0 0.9143 0.1186" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_03_09" type="capsule" fromto="0 0.9143 0.1186 0 1.8286 0.1198" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_03_10" type="capsule" fromto="0 1.8286 0.1198 0 2.7429 0.1218" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_03_11" type="capsule" fromto="0 2.7429 0.1218 0 3.6571 0.1246" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_03_12" type="capsule" fromto="0 3.6571 0.1246 0 4.5714 0.1282" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_03_13" type="capsule" fromto="0 4.5714 0.1282 0 5.4857 0.1326" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_03_14" type="capsule" fromto="0 5.4857 0.1326 0 6.4000 0.1378" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_04_01" type="capsule" fromto="0 -6.4000 0.1823 0 -5.4857 0.1754" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_04_02" type="capsule" fromto="0 -5.4857 0.1754 0 -4.5714 0.1696" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_04_03" type="capsule" fromto="0 -4.5714 0.1696 0 -3.6571 0.1648" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_04_04" type="capsule" fromto="0 -3.6571 0.1648 0 -2.7429 0.1611" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_04_05" type="capsule" fromto="0 -2.7429 0.1611 0 -1.8286 0.1585" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_04_06" type="capsule" fromto="0 -1.8286 0.1585 0 -0.9143 0.1569" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_04_07" type="capsule" fromto="0 -0.9143 0.1569 0 0.0000 0.1563" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_04_08" type="capsule" fromto="0 0.0000 0.1563 0 0.9143 0.1569" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_04_09" type="capsule" fromto="0 0.9143 0.1569 0 1.8286 0.1585" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_04_10" type="capsule" fromto="0 1.8286 0.1585 0 2.7429 0.1611" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_04_11" type="capsule" fromto="0 2.7429 0.1611 0 3.6571 0.1648" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_04_12" type="capsule" fromto="0 3.6571 0.1648 0 4.5714 0.1696" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_04_13" type="capsule" fromto="0 4.5714 0.1696 0 5.4857 0.1754" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_04_14" type="capsule" fromto="0 5.4857 0.1754 0 6.4000 0.1823" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_05_01" type="capsule" fromto="0 -6.4000 0.2269 0 -5.4857 0.2183" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_05_02" type="capsule" fromto="0 -5.4857 0.2183 0 -4.5714 0.2110" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_05_03" type="capsule" fromto="0 -4.5714 0.2110 0 -3.6571 0.2050" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_05_04" type="capsule" fromto="0 -3.6571 0.2050 0 -2.7429 0.2004" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_05_05" type="capsule" fromto="0 -2.7429 0.2004 0 -1.8286 0.1971" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_05_06" type="capsule" fromto="0 -1.8286 0.1971 0 -0.9143 0.1951" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_05_07" type="capsule" fromto="0 -0.9143 0.1951 0 0.0000 0.1944" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_05_08" type="capsule" fromto="0 0.0000 0.1944 0 0.9143 0.1951" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_05_09" type="capsule" fromto="0 0.9143 0.1951 0 1.8286 0.1971" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_05_10" type="capsule" fromto="0 1.8286 0.1971 0 2.7429 0.2004" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_05_11" type="capsule" fromto="0 2.7429 0.2004 0 3.6571 0.2050" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_05_12" type="capsule" fromto="0 3.6571 0.2050 0 4.5714 0.2110" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_05_13" type="capsule" fromto="0 4.5714 0.2110 0 5.4857 0.2183" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_05_14" type="capsule" fromto="0 5.4857 0.2183 0 6.4000 0.2269" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_06_01" type="capsule" fromto="0 -6.4000 0.2715 0 -5.4857 0.2612" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_06_02" type="capsule" fromto="0 -5.4857 0.2612 0 -4.5714 0.2524" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_06_03" type="capsule" fromto="0 -4.5714 0.2524 0 -3.6571 0.2452" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_06_04" type="capsule" fromto="0 -3.6571 0.2452 0 -2.7429 0.2397" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_06_05" type="capsule" fromto="0 -2.7429 0.2397 0 -1.8286 0.2357" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_06_06" type="capsule" fromto="0 -1.8286 0.2357 0 -0.9143 0.2333" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_06_07" type="capsule" fromto="0 -0.9143 0.2333 0 0.0000 0.2325" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_06_08" type="capsule" fromto="0 0.0000 0.2325 0 0.9143 0.2333" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_06_09" type="capsule" fromto="0 0.9143 0.2333 0 1.8286 0.2357" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_06_10" type="capsule" fromto="0 1.8286 0.2357 0 2.7429 0.2397" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_06_11" type="capsule" fromto="0 2.7429 0.2397 0 3.6571 0.2452" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_06_12" type="capsule" fromto="0 3.6571 0.2452 0 4.5714 0.2524" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_06_13" type="capsule" fromto="0 4.5714 0.2524 0 5.4857 0.2612" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_06_14" type="capsule" fromto="0 5.4857 0.2612 0 6.4000 0.2715" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_07_01" type="capsule" fromto="0 -6.4000 0.3161 0 -5.4857 0.3040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_07_02" type="capsule" fromto="0 -5.4857 0.3040 0 -4.5714 0.2938" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_07_03" type="capsule" fromto="0 -4.5714 0.2938 0 -3.6571 0.2854" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_07_04" type="capsule" fromto="0 -3.6571 0.2854 0 -2.7429 0.2789" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_07_05" type="capsule" fromto="0 -2.7429 0.2789 0 -1.8286 0.2743" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_07_06" type="capsule" fromto="0 -1.8286 0.2743 0 -0.9143 0.2715" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_07_07" type="capsule" fromto="0 -0.9143 0.2715 0 0.0000 0.2706" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_07_08" type="capsule" fromto="0 0.0000 0.2706 0 0.9143 0.2715" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_07_09" type="capsule" fromto="0 0.9143 0.2715 0 1.8286 0.2743" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_07_10" type="capsule" fromto="0 1.8286 0.2743 0 2.7429 0.2789" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_07_11" type="capsule" fromto="0 2.7429 0.2789 0 3.6571 0.2854" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_07_12" type="capsule" fromto="0 3.6571 0.2854 0 4.5714 0.2938" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_07_13" type="capsule" fromto="0 4.5714 0.2938 0 5.4857 0.3040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_07_14" type="capsule" fromto="0 5.4857 0.3040 0 6.4000 0.3161" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_08_01" type="capsule" fromto="0 -6.4000 0.3607 0 -5.4857 0.3469" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_08_02" type="capsule" fromto="0 -5.4857 0.3469 0 -4.5714 0.3352" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_08_03" type="capsule" fromto="0 -4.5714 0.3352 0 -3.6571 0.3256" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_08_04" type="capsule" fromto="0 -3.6571 0.3256 0 -2.7429 0.3182" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_08_05" type="capsule" fromto="0 -2.7429 0.3182 0 -1.8286 0.3129" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_08_06" type="capsule" fromto="0 -1.8286 0.3129 0 -0.9143 0.3097" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_08_07" type="capsule" fromto="0 -0.9143 0.3097 0 0.0000 0.3087" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_08_08" type="capsule" fromto="0 0.0000 0.3087 0 0.9143 0.3097" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_08_09" type="capsule" fromto="0 0.9143 0.3097 0 1.8286 0.3129" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_08_10" type="capsule" fromto="0 1.8286 0.3129 0 2.7429 0.3182" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_08_11" type="capsule" fromto="0 2.7429 0.3182 0 3.6571 0.3256" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_08_12" type="capsule" fromto="0 3.6571 0.3256 0 4.5714 0.3352" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_08_13" type="capsule" fromto="0 4.5714 0.3352 0 5.4857 0.3469" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_08_14" type="capsule" fromto="0 5.4857 0.3469 0 6.4000 0.3607" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_09_01" type="capsule" fromto="0 -6.4000 0.4052 0 -5.4857 0.3897" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_09_02" type="capsule" fromto="0 -5.4857 0.3897 0 -4.5714 0.3766" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_09_03" type="capsule" fromto="0 -4.5714 0.3766 0 -3.6571 0.3659" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_09_04" type="capsule" fromto="0 -3.6571 0.3659 0 -2.7429 0.3575" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_09_05" type="capsule" fromto="0 -2.7429 0.3575 0 -1.8286 0.3515" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_09_06" type="capsule" fromto="0 -1.8286 0.3515 0 -0.9143 0.3479" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_09_07" type="capsule" fromto="0 -0.9143 0.3479 0 0.0000 0.3468" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_09_08" type="capsule" fromto="0 0.0000 0.3468 0 0.9143 0.3479" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_09_09" type="capsule" fromto="0 0.9143 0.3479 0 1.8286 0.3515" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_09_10" type="capsule" fromto="0 1.8286 0.3515 0 2.7429 0.3575" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_09_11" type="capsule" fromto="0 2.7429 0.3575 0 3.6571 0.3659" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_09_12" type="capsule" fromto="0 3.6571 0.3659 0 4.5714 0.3766" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_09_13" type="capsule" fromto="0 4.5714 0.3766 0 5.4857 0.3897" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_09_14" type="capsule" fromto="0 5.4857 0.3897 0 6.4000 0.4052" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_10_01" type="capsule" fromto="0 -6.4000 0.4498 0 -5.4857 0.4326" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_10_02" type="capsule" fromto="0 -5.4857 0.4326 0 -4.5714 0.4180" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_10_03" type="capsule" fromto="0 -4.5714 0.4180 0 -3.6571 0.4061" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_10_04" type="capsule" fromto="0 -3.6571 0.4061 0 -2.7429 0.3968" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_10_05" type="capsule" fromto="0 -2.7429 0.3968 0 -1.8286 0.3901" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_10_06" type="capsule" fromto="0 -1.8286 0.3901 0 -0.9143 0.3862" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_10_07" type="capsule" fromto="0 -0.9143 0.3862 0 0.0000 0.3848" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_10_08" type="capsule" fromto="0 0.0000 0.3848 0 0.9143 0.3862" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_10_09" type="capsule" fromto="0 0.9143 0.3862 0 1.8286 0.3901" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_10_10" type="capsule" fromto="0 1.8286 0.3901 0 2.7429 0.3968" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_10_11" type="capsule" fromto="0 2.7429 0.3968 0 3.6571 0.4061" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_10_12" type="capsule" fromto="0 3.6571 0.4061 0 4.5714 0.4180" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_10_13" type="capsule" fromto="0 4.5714 0.4180 0 5.4857 0.4326" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_10_14" type="capsule" fromto="0 5.4857 0.4326 0 6.4000 0.4498" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_11_01" type="capsule" fromto="0 -6.4000 0.4944 0 -5.4857 0.4754" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_11_02" type="capsule" fromto="0 -5.4857 0.4754 0 -4.5714 0.4594" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_11_03" type="capsule" fromto="0 -4.5714 0.4594 0 -3.6571 0.4463" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_11_04" type="capsule" fromto="0 -3.6571 0.4463 0 -2.7429 0.4360" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_11_05" type="capsule" fromto="0 -2.7429 0.4360 0 -1.8286 0.4288" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_11_06" type="capsule" fromto="0 -1.8286 0.4288 0 -0.9143 0.4244" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_11_07" type="capsule" fromto="0 -0.9143 0.4244 0 0.0000 0.4229" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_11_08" type="capsule" fromto="0 0.0000 0.4229 0 0.9143 0.4244" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_11_09" type="capsule" fromto="0 0.9143 0.4244 0 1.8286 0.4288" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_11_10" type="capsule" fromto="0 1.8286 0.4288 0 2.7429 0.4360" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_11_11" type="capsule" fromto="0 2.7429 0.4360 0 3.6571 0.4463" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_11_12" type="capsule" fromto="0 3.6571 0.4463 0 4.5714 0.4594" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_11_13" type="capsule" fromto="0 4.5714 0.4594 0 5.4857 0.4754" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_11_14" type="capsule" fromto="0 5.4857 0.4754 0 6.4000 0.4944" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_12_01" type="capsule" fromto="0 -6.4000 0.5390 0 -5.4857 0.5183" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_12_02" type="capsule" fromto="0 -5.4857 0.5183 0 -4.5714 0.5008" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_12_03" type="capsule" fromto="0 -4.5714 0.5008 0 -3.6571 0.4865" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_12_04" type="capsule" fromto="0 -3.6571 0.4865 0 -2.7429 0.4753" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_12_05" type="capsule" fromto="0 -2.7429 0.4753 0 -1.8286 0.4674" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_12_06" type="capsule" fromto="0 -1.8286 0.4674 0 -0.9143 0.4626" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_12_07" type="capsule" fromto="0 -0.9143 0.4626 0 0.0000 0.4610" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_12_08" type="capsule" fromto="0 0.0000 0.4610 0 0.9143 0.4626" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_12_09" type="capsule" fromto="0 0.9143 0.4626 0 1.8286 0.4674" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_12_10" type="capsule" fromto="0 1.8286 0.4674 0 2.7429 0.4753" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_12_11" type="capsule" fromto="0 2.7429 0.4753 0 3.6571 0.4865" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_12_12" type="capsule" fromto="0 3.6571 0.4865 0 4.5714 0.5008" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_12_13" type="capsule" fromto="0 4.5714 0.5008 0 5.4857 0.5183" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_12_14" type="capsule" fromto="0 5.4857 0.5183 0 6.4000 0.5390" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_13_01" type="capsule" fromto="0 -6.4000 0.5836 0 -5.4857 0.5612" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_13_02" type="capsule" fromto="0 -5.4857 0.5612 0 -4.5714 0.5422" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_13_03" type="capsule" fromto="0 -4.5714 0.5422 0 -3.6571 0.5267" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_13_04" type="capsule" fromto="0 -3.6571 0.5267 0 -2.7429 0.5146" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_13_05" type="capsule" fromto="0 -2.7429 0.5146 0 -1.8286 0.5060" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_13_06" type="capsule" fromto="0 -1.8286 0.5060 0 -0.9143 0.5008" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_13_07" type="capsule" fromto="0 -0.9143 0.5008 0 0.0000 0.4991" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_13_08" type="capsule" fromto="0 0.0000 0.4991 0 0.9143 0.5008" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_13_09" type="capsule" fromto="0 0.9143 0.5008 0 1.8286 0.5060" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_13_10" type="capsule" fromto="0 1.8286 0.5060 0 2.7429 0.5146" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_13_11" type="capsule" fromto="0 2.7429 0.5146 0 3.6571 0.5267" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_13_12" type="capsule" fromto="0 3.6571 0.5267 0 4.5714 0.5422" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_13_13" type="capsule" fromto="0 4.5714 0.5422 0 5.4857 0.5612" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_13_14" type="capsule" fromto="0 5.4857 0.5612 0 6.4000 0.5836" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_14_01" type="capsule" fromto="0 -6.4000 0.6282 0 -5.4857 0.6040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_14_02" type="capsule" fromto="0 -5.4857 0.6040 0 -4.5714 0.5836" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_14_03" type="capsule" fromto="0 -4.5714 0.5836 0 -3.6571 0.5669" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_14_04" type="capsule" fromto="0 -3.6571 0.5669 0 -2.7429 0.5539" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_14_05" type="capsule" fromto="0 -2.7429 0.5539 0 -1.8286 0.5446" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_14_06" type="capsule" fromto="0 -1.8286 0.5446 0 -0.9143 0.5390" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_14_07" type="capsule" fromto="0 -0.9143 0.5390 0 0.0000 0.5372" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_14_08" type="capsule" fromto="0 0.0000 0.5372 0 0.9143 0.5390" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_14_09" type="capsule" fromto="0 0.9143 0.5390 0 1.8286 0.5446" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_14_10" type="capsule" fromto="0 1.8286 0.5446 0 2.7429 0.5539" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_14_11" type="capsule" fromto="0 2.7429 0.5539 0 3.6571 0.5669" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_14_12" type="capsule" fromto="0 3.6571 0.5669 0 4.5714 0.5836" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_14_13" type="capsule" fromto="0 4.5714 0.5836 0 5.4857 0.6040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_14_14" type="capsule" fromto="0 5.4857 0.6040 0 6.4000 0.6282" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_15_01" type="capsule" fromto="0 -6.4000 0.6728 0 -5.4857 0.6469" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_15_02" type="capsule" fromto="0 -5.4857 0.6469 0 -4.5714 0.6250" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_15_03" type="capsule" fromto="0 -4.5714 0.6250 0 -3.6571 0.6071" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_15_04" type="capsule" fromto="0 -3.6571 0.6071 0 -2.7429 0.5932" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_15_05" type="capsule" fromto="0 -2.7429 0.5932 0 -1.8286 0.5832" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_15_06" type="capsule" fromto="0 -1.8286 0.5832 0 -0.9143 0.5772" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_15_07" type="capsule" fromto="0 -0.9143 0.5772 0 0.0000 0.5753" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_15_08" type="capsule" fromto="0 0.0000 0.5753 0 0.9143 0.5772" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_15_09" type="capsule" fromto="0 0.9143 0.5772 0 1.8286 0.5832" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_15_10" type="capsule" fromto="0 1.8286 0.5832 0 2.7429 0.5932" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_15_11" type="capsule" fromto="0 2.7429 0.5932 0 3.6571 0.6071" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_15_12" type="capsule" fromto="0 3.6571 0.6071 0 4.5714 0.6250" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_15_13" type="capsule" fromto="0 4.5714 0.6250 0 5.4857 0.6469" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_15_14" type="capsule" fromto="0 5.4857 0.6469 0 6.4000 0.6728" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_16_01" type="capsule" fromto="0 -6.4000 0.7173 0 -5.4857 0.6897" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_16_02" type="capsule" fromto="0 -5.4857 0.6897 0 -4.5714 0.6664" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_16_03" type="capsule" fromto="0 -4.5714 0.6664 0 -3.6571 0.6473" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_16_04" type="capsule" fromto="0 -3.6571 0.6473 0 -2.7429 0.6324" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_16_05" type="capsule" fromto="0 -2.7429 0.6324 0 -1.8286 0.6218" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_16_06" type="capsule" fromto="0 -1.8286 0.6218 0 -0.9143 0.6155" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_16_07" type="capsule" fromto="0 -0.9143 0.6155 0 0.0000 0.6133" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_16_08" type="capsule" fromto="0 0.0000 0.6133 0 0.9143 0.6155" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_16_09" type="capsule" fromto="0 0.9143 0.6155 0 1.8286 0.6218" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_16_10" type="capsule" fromto="0 1.8286 0.6218 0 2.7429 0.6324" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_16_11" type="capsule" fromto="0 2.7429 0.6324 0 3.6571 0.6473" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_16_12" type="capsule" fromto="0 3.6571 0.6473 0 4.5714 0.6664" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_16_13" type="capsule" fromto="0 4.5714 0.6664 0 5.4857 0.6897" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_16_14" type="capsule" fromto="0 5.4857 0.6897 0 6.4000 0.7173" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_17_01" type="capsule" fromto="0 -6.4000 0.7619 0 -5.4857 0.7326" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_17_02" type="capsule" fromto="0 -5.4857 0.7326 0 -4.5714 0.7078" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_17_03" type="capsule" fromto="0 -4.5714 0.7078 0 -3.6571 0.6875" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_17_04" type="capsule" fromto="0 -3.6571 0.6875 0 -2.7429 0.6717" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_17_05" type="capsule" fromto="0 -2.7429 0.6717 0 -1.8286 0.6604" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_17_06" type="capsule" fromto="0 -1.8286 0.6604 0 -0.9143 0.6537" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_17_07" type="capsule" fromto="0 -0.9143 0.6537 0 0.0000 0.6514" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_17_08" type="capsule" fromto="0 0.0000 0.6514 0 0.9143 0.6537" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_17_09" type="capsule" fromto="0 0.9143 0.6537 0 1.8286 0.6604" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_17_10" type="capsule" fromto="0 1.8286 0.6604 0 2.7429 0.6717" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_17_11" type="capsule" fromto="0 2.7429 0.6717 0 3.6571 0.6875" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_17_12" type="capsule" fromto="0 3.6571 0.6875 0 4.5714 0.7078" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_17_13" type="capsule" fromto="0 4.5714 0.7078 0 5.4857 0.7326" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_17_14" type="capsule" fromto="0 5.4857 0.7326 0 6.4000 0.7619" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_18_01" type="capsule" fromto="0 -6.4000 0.8065 0 -5.4857 0.7755" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_18_02" type="capsule" fromto="0 -5.4857 0.7755 0 -4.5714 0.7492" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_18_03" type="capsule" fromto="0 -4.5714 0.7492 0 -3.6571 0.7277" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_18_04" type="capsule" fromto="0 -3.6571 0.7277 0 -2.7429 0.7110" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_18_05" type="capsule" fromto="0 -2.7429 0.7110 0 -1.8286 0.6991" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_18_06" type="capsule" fromto="0 -1.8286 0.6991 0 -0.9143 0.6919" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_18_07" type="capsule" fromto="0 -0.9143 0.6919 0 0.0000 0.6895" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_18_08" type="capsule" fromto="0 0.0000 0.6895 0 0.9143 0.6919" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_18_09" type="capsule" fromto="0 0.9143 0.6919 0 1.8286 0.6991" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_18_10" type="capsule" fromto="0 1.8286 0.6991 0 2.7429 0.7110" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_18_11" type="capsule" fromto="0 2.7429 0.7110 0 3.6571 0.7277" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_18_12" type="capsule" fromto="0 3.6571 0.7277 0 4.5714 0.7492" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_18_13" type="capsule" fromto="0 4.5714 0.7492 0 5.4857 0.7755" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_18_14" type="capsule" fromto="0 5.4857 0.7755 0 6.4000 0.8065" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_19_01" type="capsule" fromto="0 -6.4000 0.8511 0 -5.4857 0.8183" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_19_02" type="capsule" fromto="0 -5.4857 0.8183 0 -4.5714 0.7906" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_19_03" type="capsule" fromto="0 -4.5714 0.7906 0 -3.6571 0.7679" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_19_04" type="capsule" fromto="0 -3.6571 0.7679 0 -2.7429 0.7503" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_19_05" type="capsule" fromto="0 -2.7429 0.7503 0 -1.8286 0.7377" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_19_06" type="capsule" fromto="0 -1.8286 0.7377 0 -0.9143 0.7301" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_19_07" type="capsule" fromto="0 -0.9143 0.7301 0 0.0000 0.7276" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_19_08" type="capsule" fromto="0 0.0000 0.7276 0 0.9143 0.7301" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_19_09" type="capsule" fromto="0 0.9143 0.7301 0 1.8286 0.7377" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_19_10" type="capsule" fromto="0 1.8286 0.7377 0 2.7429 0.7503" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_19_11" type="capsule" fromto="0 2.7429 0.7503 0 3.6571 0.7679" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_19_12" type="capsule" fromto="0 3.6571 0.7679 0 4.5714 0.7906" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_19_13" type="capsule" fromto="0 4.5714 0.7906 0 5.4857 0.8183" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_19_14" type="capsule" fromto="0 5.4857 0.8183 0 6.4000 0.8511" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_20_01" type="capsule" fromto="0 -6.4000 0.8957 0 -5.4857 0.8612" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_20_02" type="capsule" fromto="0 -5.4857 0.8612 0 -4.5714 0.8320" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_20_03" type="capsule" fromto="0 -4.5714 0.8320 0 -3.6571 0.8081" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_20_04" type="capsule" fromto="0 -3.6571 0.8081 0 -2.7429 0.7895" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_20_05" type="capsule" fromto="0 -2.7429 0.7895 0 -1.8286 0.7763" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_20_06" type="capsule" fromto="0 -1.8286 0.7763 0 -0.9143 0.7683" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_20_07" type="capsule" fromto="0 -0.9143 0.7683 0 0.0000 0.7657" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_20_08" type="capsule" fromto="0 0.0000 0.7657 0 0.9143 0.7683" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_20_09" type="capsule" fromto="0 0.9143 0.7683 0 1.8286 0.7763" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_20_10" type="capsule" fromto="0 1.8286 0.7763 0 2.7429 0.7895" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_20_11" type="capsule" fromto="0 2.7429 0.7895 0 3.6571 0.8081" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_20_12" type="capsule" fromto="0 3.6571 0.8081 0 4.5714 0.8320" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_20_13" type="capsule" fromto="0 4.5714 0.8320 0 5.4857 0.8612" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_20_14" type="capsule" fromto="0 5.4857 0.8612 0 6.4000 0.8957" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_21_01" type="capsule" fromto="0 -6.4000 0.9403 0 -5.4857 0.9040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_21_02" type="capsule" fromto="0 -5.4857 0.9040 0 -4.5714 0.8734" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_21_03" type="capsule" fromto="0 -4.5714 0.8734 0 -3.6571 0.8483" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_21_04" type="capsule" fromto="0 -3.6571 0.8483 0 -2.7429 0.8288" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_21_05" type="capsule" fromto="0 -2.7429 0.8288 0 -1.8286 0.8149" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_21_06" type="capsule" fromto="0 -1.8286 0.8149 0 -0.9143 0.8065" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_21_07" type="capsule" fromto="0 -0.9143 0.8065 0 0.0000 0.8038" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_21_08" type="capsule" fromto="0 0.0000 0.8038 0 0.9143 0.8065" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_21_09" type="capsule" fromto="0 0.9143 0.8065 0 1.8286 0.8149" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_21_10" type="capsule" fromto="0 1.8286 0.8149 0 2.7429 0.8288" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_21_11" type="capsule" fromto="0 2.7429 0.8288 0 3.6571 0.8483" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_21_12" type="capsule" fromto="0 3.6571 0.8483 0 4.5714 0.8734" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_21_13" type="capsule" fromto="0 4.5714 0.8734 0 5.4857 0.9040" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_21_14" type="capsule" fromto="0 5.4857 0.9040 0 6.4000 0.9403" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_22_01" type="capsule" fromto="0 -6.4000 0.9848 0 -5.4857 0.9469" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_22_02" type="capsule" fromto="0 -5.4857 0.9469 0 -4.5714 0.9148" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_22_03" type="capsule" fromto="0 -4.5714 0.9148 0 -3.6571 0.8885" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_22_04" type="capsule" fromto="0 -3.6571 0.8885 0 -2.7429 0.8681" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_22_05" type="capsule" fromto="0 -2.7429 0.8681 0 -1.8286 0.8535" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_22_06" type="capsule" fromto="0 -1.8286 0.8535 0 -0.9143 0.8448" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_22_07" type="capsule" fromto="0 -0.9143 0.8448 0 0.0000 0.8418" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_22_08" type="capsule" fromto="0 0.0000 0.8418 0 0.9143 0.8448" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_22_09" type="capsule" fromto="0 0.9143 0.8448 0 1.8286 0.8535" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_22_10" type="capsule" fromto="0 1.8286 0.8535 0 2.7429 0.8681" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_22_11" type="capsule" fromto="0 2.7429 0.8681 0 3.6571 0.8885" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_22_12" type="capsule" fromto="0 3.6571 0.8885 0 4.5714 0.9148" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_22_13" type="capsule" fromto="0 4.5714 0.9148 0 5.4857 0.9469" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_22_14" type="capsule" fromto="0 5.4857 0.9469 0 6.4000 0.9848" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_23_01" type="capsule" fromto="0 -6.4000 1.0294 0 -5.4857 0.9898" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_23_02" type="capsule" fromto="0 -5.4857 0.9898 0 -4.5714 0.9562" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_23_03" type="capsule" fromto="0 -4.5714 0.9562 0 -3.6571 0.9287" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_23_04" type="capsule" fromto="0 -3.6571 0.9287 0 -2.7429 0.9074" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_23_05" type="capsule" fromto="0 -2.7429 0.9074 0 -1.8286 0.8921" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_23_06" type="capsule" fromto="0 -1.8286 0.8921 0 -0.9143 0.8830" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_23_07" type="capsule" fromto="0 -0.9143 0.8830 0 0.0000 0.8799" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_23_08" type="capsule" fromto="0 0.0000 0.8799 0 0.9143 0.8830" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_23_09" type="capsule" fromto="0 0.9143 0.8830 0 1.8286 0.8921" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_23_10" type="capsule" fromto="0 1.8286 0.8921 0 2.7429 0.9074" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_23_11" type="capsule" fromto="0 2.7429 0.9074 0 3.6571 0.9287" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_23_12" type="capsule" fromto="0 3.6571 0.9287 0 4.5714 0.9562" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_23_13" type="capsule" fromto="0 4.5714 0.9562 0 5.4857 0.9898" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_23_14" type="capsule" fromto="0 5.4857 0.9898 0 6.4000 1.0294" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_24_01" type="capsule" fromto="0 -6.4000 1.0740 0 -5.4857 1.0326" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_24_02" type="capsule" fromto="0 -5.4857 1.0326 0 -4.5714 0.9976" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_24_03" type="capsule" fromto="0 -4.5714 0.9976 0 -3.6571 0.9689" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_24_04" type="capsule" fromto="0 -3.6571 0.9689 0 -2.7429 0.9467" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_24_05" type="capsule" fromto="0 -2.7429 0.9467 0 -1.8286 0.9307" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_24_06" type="capsule" fromto="0 -1.8286 0.9307 0 -0.9143 0.9212" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_24_07" type="capsule" fromto="0 -0.9143 0.9212 0 0.0000 0.9180" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_24_08" type="capsule" fromto="0 0.0000 0.9180 0 0.9143 0.9212" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_24_09" type="capsule" fromto="0 0.9143 0.9212 0 1.8286 0.9307" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_24_10" type="capsule" fromto="0 1.8286 0.9307 0 2.7429 0.9467" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_24_11" type="capsule" fromto="0 2.7429 0.9467 0 3.6571 0.9689" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_24_12" type="capsule" fromto="0 3.6571 0.9689 0 4.5714 0.9976" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_24_13" type="capsule" fromto="0 4.5714 0.9976 0 5.4857 1.0326" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_wire_h_24_14" type="capsule" fromto="0 5.4857 1.0326 0 6.4000 1.0740" size="0.0028" rgba="0.055 0.056 0.062 0.9" contype="0" conaffinity="0" group="1" />
+    <geom name="net_post_neg" pos="0.0000 -6.4000 0.5350" size="0.05 0.5350" type="cylinder" material="post_dark" contype="0" conaffinity="0" group="1" />
+    <geom name="net_post_pos" pos="0.0000 6.4000 0.5350" size="0.05 0.5350" type="cylinder" material="post_dark" contype="0" conaffinity="0" group="1" />
     <geom name="outer_ground_visual" type="box" pos="0.0000 0.0000 -0.0080" size="42.0000 30.0000 0.0040" material="outer_ground" contype="0" conaffinity="0" group="1" />
     <geom name="fence_north_mesh" type="box" pos="0.0000 9.8000 0.5000" size="16.2000 0.0120 0.4200" material="fence_mesh" contype="0" conaffinity="0" group="1" />
     <geom name="fence_north_rail_100" type="box" pos="0.0000 9.8000 1.0000" size="16.2000 0.0350 0.0350" material="fence_frame" contype="0" conaffinity="0" group="1" />

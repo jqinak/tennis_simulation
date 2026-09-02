@@ -102,10 +102,19 @@ obs, reward, done, info = env.step(action)
 python scripts/record_video.py --camera rally --seconds 4.5 --out outputs/videos/demo.mp4
 ```
 
-机位：`rally`（默认近景）/ `broadcast` / `side` / `behind_robot` / `robot_close` / `track_ball`。
+机位：`rally`（默认近景）/ `robot_front`（机器人正前方跟随机位）/ `broadcast`
+（整体俯拍，全场含底线均在画面内）/ `side` / `behind_robot` / `robot_close` / `track_ball`。
 也可用 `tennis_sim.render.EpisodeRecorder` 包住任何 `env.run_episode(..., on_step=rec.on_step)`。
 
+脚本化正手按网球规则接发：喂球先在机器人半场落地一次，机器人不截击、
+落地后再击球；`scripts/record_video.py` 会持续录制到回球完全静止后结束。
+
 ## 场景装饰与可视化（纯渲染层，零物理影响）
+
+- 天空：court 项目 kloppenheim_06 HDRI 转立方体贴图（`assets/kloppenheim_06_puresky_4k.hdr`），
+  主光方向对齐 court 项目太阳灯；地面纹理为 court 项目 painted concrete 4K 贴图
+  （`assets/textures/`，颜色保持原 RGBA 不变）；球网为 court2 样式细网格
+  （长度/高度与原一致，碰撞盒不变）；网球配色同 court 项目
 
 - 程序化天空立方体贴图（渐变 + 云层 + 太阳光晕，`tennis_sim/textures.py` 自动生成
   `assets/sky/skybox.png`，失败时回退纯渐变）

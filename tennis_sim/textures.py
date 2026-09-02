@@ -1,9 +1,12 @@
-"""Procedural textures for scene decoration.
+"""Scene textures.
 
-Generates (cached on disk, all purely visual, no physics impact):
-- assets/sky/skybox.png       cube-map sky (gradient + clouds + sun glow) laid out
-                              in a 3x4 grid for MuJoCo gridsize="3 4" gridlayout="..U.LFRB.D.."
-- assets/textures/court_*.png grayscale speckle/blotch textures tinted by material rgba
+Sky: converted from the copied kloppenheim_06_puresky_4k.hdr (from the court
+project) into a MuJoCo cube-map PNG (3x4 grid, gridlayout="..U.LFRB.D..").
+Falls back to a procedural gradient sky when the HDR is unavailable.
+
+Ground: assets/textures/concrete_floor_painted_diff_4k.jpg copied from the
+court project is used directly by build_court; the procedural speckle
+generator below only serves as a fallback.
 """
 
 import os
@@ -17,6 +20,8 @@ ASSETS_DIR = os.path.join(PROJECT_DIR, "assets")
 
 FACE = 512
 
+HDR_NAME = "kloppenheim_06_puresky_4k.hdr"
+
 ZENITH = np.array([0.13, 0.31, 0.65])
 HORIZON = np.array([0.72, 0.80, 0.87])
 GROUND_HAZE = np.array([0.28, 0.35, 0.29])
@@ -25,6 +30,17 @@ CLOUD = np.array([0.99, 0.99, 1.00])
 SUN_WARM = np.array([1.00, 0.80, 0.52])
 
 SUN_U, SUN_V = 0.66, 0.36
+
+# face name -> (forward, right, up) bases; horizontal faces form the cyclic
+# order F -> R -> B -> L matching the grid layout "..U.LFRB.D.."
+_FACE_BASES = {
+    "F": ((1.0, 0.0, 0.0), (0.0, 1.0, 0.0), (0.0, 0.0, 1.0)),
+    "R": ((0.0, 1.0, 0.0), (-1.0, 0.0, 0.0), (0.0, 0.0, 1.0)),
+    "B": ((-1.0, 0.0, 0.0), (0.0, -1.0, 0.0), (0.0, 0.0, 1.0)),
+    "L": ((0.0, -1.0, 0.0), (1.0, 0.0, 0.0), (0.0, 0.0, 1.0)),
+    "U": ((0.0, 0.0, 1.0), (0.0, 1.0, 0.0), (0.0, -1.0, 0.0)),
+    "D": ((0.0, 0.0, -1.0), (0.0, 1.0, 0.0), (1.0, 0.0, 0.0)),
+}
 
 
 def _bilinear_resize(a, h, w):
@@ -43,6 +59,11 @@ def _bilinear_resize(a, h, w):
             + a[np.ix_(y1, x1)] * wy * wx)
 
 
+def _smoothstep(e0, e1, x):
+    t = np.clip((x - e0) / max(e1 - e0, 1e-9), 0.0, 1.0)
+    return t * t * (3.0 - 2.0 * t)
+
+
 def _fbm(h, w, seed, octaves=5, freq=(3.0, 6.0)):
     rng = np.random.default_rng(seed)
     acc = np.zeros((h, w))
@@ -57,9 +78,66 @@ def _fbm(h, w, seed, octaves=5, freq=(3.0, 6.0)):
     return acc / total
 
 
-def _smoothstep(e0, e1, x):
-    t = np.clip((x - e0) / max(e1 - e0, 1e-9), 0.0, 1.0)
-    return t * t * (3.0 - 2.0 * t)
+def _sample_equirect(img, dirs):
+    """Bilinear equirect sampling (longitude wraps, latitude clamps)."""
+    h, w, _ = img.shape
+    x, y, z = dirs[:, 0], dirs[:, 1], dirs[:, 2]
+    theta = np.arctan2(y, x)
+    phi = np.arcsin(np.clip(z, -1.0, 1.0))
+    fx = (theta / (2.0 * np.pi) + 0.5) * w - 0.5
+    fy = (0.5 - phi / np.pi) * h - 0.5
+    x0 = np.floor(fx).astype(np.int64)
+    y0 = np.floor(fy).astype(np.int64)
+    wx = fx - x0
+    wy = fy - y0
+    x0w = np.mod(x0, w)
+    x1w = np.mod(x0 + 1, w)
+    y0c = np.clip(y0, 0, h - 1)
+    y1c = np.clip(y0 + 1, 0, h - 1)
+    wx = wx[:, None]
+    wy = wy[:, None]
+    return (img[y0c][:, x0w] * (1.0 - wx) * (1.0 - wy)
+            + img[y0c][:, x1w] * wx * (1.0 - wy)
+            + img[y1c][:, x0w] * (1.0 - wx) * wy
+            + img[y1c][:, x1w] * wx * wy)
+
+
+def _face_pixels(face):
+    fwd, right, up = _FACE_BASES[face]
+    a = np.linspace(-1.0, 1.0, FACE)
+    b = np.linspace(-1.0, 1.0, FACE)
+    aa, bb = np.meshgrid(a, b)
+    fwd = np.asarray(fwd)
+    right = np.asarray(right)
+    up = np.asarray(up)
+    dirs = (fwd[None, None, :] + aa[:, :, None] * right[None, None, :]
+            + bb[:, :, None] * up[None, None, :])
+    dirs = dirs.reshape(-1, 3)
+    dirs /= np.linalg.norm(dirs, axis=1, keepdims=True)
+    return dirs
+
+
+def _tonemap(c):
+    c = np.clip(c, 0.0, None)
+    c = c / (1.0 + c)
+    return np.clip(c ** (1.0 / 2.2), 0.0, 1.0)
+
+
+def build_skybox_from_hdr(hdr_path):
+    img = imageio.imread(hdr_path).astype(np.float32)
+    faces = {}
+    for name in _FACE_BASES:
+        dirs = _face_pixels(name)
+        faces[name] = _tonemap(_sample_equirect(img, dirs)).reshape(FACE, FACE, 3)
+    layout = [[".", ".", "U", "."], ["L", "F", "R", "B"], [".", "D", ".", "."]]
+    grid = np.zeros((FACE * 3, FACE * 4, 3))
+    for r in range(3):
+        for c in range(4):
+            key = layout[r][c]
+            if key == ".":
+                continue
+            grid[r * FACE:(r + 1) * FACE, c * FACE:(c + 1) * FACE] = faces[key]
+    return (np.clip(grid, 0.0, 1.0) * 255.0).astype(np.uint8)
 
 
 def _side_strip(seed):
@@ -108,11 +186,10 @@ def build_skybox():
         np.clip(vv * 4.0, 0, 1) * np.clip((1.0 - vv) * 4.0, 0, 1)
     a_up = (np.clip((cloud_up - 0.47) * 3.6, 0, 1) ** 0.9) * np.minimum(edge, 1.0) * 0.85
     zenith = zenith * (1.0 - a_up[:, :, None]) + (CLOUD * 0.97)[None, None, :] * a_up[:, :, None]
-    nadir = np.tile(NADIR, (FACE, FACE, 1))
     faces["U"] = zenith
-    faces["D"] = nadir
-    grid = np.empty((FACE * 3, FACE * 4, 3))
+    faces["D"] = np.tile(NADIR, (FACE, FACE, 1))
     layout = [[".", ".", "U", "."], ["L", "F", "R", "B"], [".", "D", ".", "."]]
+    grid = np.zeros((FACE * 3, FACE * 4, 3))
     for r in range(3):
         for c in range(4):
             key = layout[r][c]
@@ -123,11 +200,20 @@ def build_skybox():
 
 
 def ensure_skybox():
+    """Skybox from the copied court-project HDRI; procedural fallback."""
     out_dir = os.path.join(ASSETS_DIR, "sky")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "skybox.png")
-    if not os.path.exists(path):
-        imageio.imwrite(path, build_skybox())
+    if os.path.exists(path):
+        return path
+    hdr = os.path.join(ASSETS_DIR, HDR_NAME)
+    if os.path.exists(hdr):
+        try:
+            imageio.imwrite(path, build_skybox_from_hdr(hdr))
+            return path
+        except Exception:
+            pass
+    imageio.imwrite(path, build_skybox())
     return path
 
 
@@ -150,6 +236,3 @@ def ensure_surface_texture(name, seed, **kw):
 
 if __name__ == "__main__":
     print(ensure_skybox())
-    print(ensure_surface_texture("court_surface.png", 3))
-    print(ensure_surface_texture("court_apron.png", 5))
-    print(ensure_surface_texture("court_ground.png", 9))

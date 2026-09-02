@@ -2,6 +2,8 @@ import math
 import os
 import xml.etree.ElementTree as ET
 
+import numpy as np
+
 from tennis_sim import constants as C
 
 COURT_LENGTH = 23.77
@@ -38,6 +40,11 @@ COLOR_LAMP = "0.97 0.97 0.92 1"
 COLOR_CART = "0.80 0.42 0.10 1"
 COLOR_BANNER = "0.10 0.20 0.45 1"
 COLOR_OUTER_GROUND = "0.115 0.185 0.115 1"
+
+# Assets copied from the court project (read-only source, do not modify there).
+CONCRETE_TEX = "textures/concrete_floor_painted_diff_4k.jpg"
+# Sun light matching the court project's sun lamp (Blender rotation 0.75/0/0.35).
+SUN_DIR = "-0.2337 0.6403 -0.7317"
 
 FENCE_HALF_X = 16.2
 FENCE_HALF_Y = 9.8
@@ -80,9 +87,9 @@ def add_assets(asset_el):
     else:
         _sub(asset_el, "texture", name="skybox", type="skybox", builtin="gradient",
              rgb1="0.13 0.31 0.65", rgb2="0.85 0.90 0.94", width="800", height="600")
-    tex_court = _tex_or_none(_surface, "court_surface.png", 3)
-    tex_apron = _tex_or_none(_surface, "court_apron.png", 5)
-    tex_ground = _tex_or_none(_surface, "court_ground.png", 9)
+    tex_court = _ground_texture("court_surface.png", 3)
+    tex_apron = _ground_texture("court_apron.png", 5)
+    tex_ground = _ground_texture("court_ground.png", 9)
     if tex_court:
         _sub(asset_el, "texture", name="tex_court", type="2d", file=tex_court)
         _sub(asset_el, "material", name="court_blue", texture="tex_court", texrepeat="12 6",
@@ -137,6 +144,25 @@ def _surface(name, seed):
     from tennis_sim import textures as TX
 
     return TX.ensure_surface_texture(name, seed)
+
+
+def _ground_texture(name, seed):
+    """Court-project concrete texture if copied in, procedural fallback.
+    MuJoCo only loads PNG, so the copied JPG is converted once and cached.
+    Levels are re-centered on the previous texture brightness so the court
+    keeps its current colors while adopting the concrete pattern."""
+    concrete = os.path.join(_assets_dir(), CONCRETE_TEX)
+    if os.path.exists(concrete):
+        png = os.path.splitext(concrete)[0] + ".png"
+        if not os.path.exists(png):
+            import imageio.v2 as imageio
+
+            img = imageio.imread(concrete).astype(np.float32) / 255.0
+            mean = float(img.mean())
+            img = np.clip(0.82 + (img - mean) * 0.9, 0.55, 0.97)
+            imageio.imwrite(png, (img * 255.0).astype(np.uint8))
+        return os.path.relpath(png, _assets_dir())
+    return _tex_or_none(_surface, name, seed)
 
 
 def _deco_box(parent, name, pos, size, material, quat=None):
@@ -352,6 +378,8 @@ def _net_segment(worldbody, name, y0, y1, h0, h1, *, collision):
 
 
 def add_net(worldbody):
+    """Net: collision boxes unchanged; visual is a court2-style fine dark wire
+    grid (same length/height as before, no tape)."""
     n_seg = 14
     prev_y = -C.NET_POST_Y
     prev_h = C.NET_HEIGHT_POST
@@ -361,27 +389,32 @@ def add_net(worldbody):
         h = C.NET_HEIGHT_POST - (C.NET_HEIGHT_POST - C.NET_HEIGHT_CENTER) * _sag(t)
         _net_segment(worldbody, "net_collision_%02d" % i, prev_y, y, prev_h, h, collision=True)
         prev_y, prev_h = y, h
-    prev_y = -C.NET_POST_Y
-    prev_h = C.NET_HEIGHT_POST
-    for i in range(1, n_seg + 1):
-        y = -C.NET_POST_Y + (2 * C.NET_POST_Y) * i / n_seg
-        t = i / n_seg
-        h = C.NET_HEIGHT_POST - (C.NET_HEIGHT_POST - C.NET_HEIGHT_CENTER) * _sag(t)
-        _net_segment(worldbody, "net_visual_%02d" % i, prev_y, y, prev_h, h, collision=False)
-        prev_y, prev_h = y, h
+    # court2-style wire grid: verticals + horizontals following the sag
+    n_v, n_h = 100, 24
+    wire = dict(rgba="0.055 0.056 0.062 0.9", contype="0", conaffinity="0", group="1")
+    ys = [-C.NET_POST_Y + (2 * C.NET_POST_Y) * k / n_v for k in range(n_v + 1)]
+    tops = [C.NET_HEIGHT_POST - (C.NET_HEIGHT_POST - C.NET_HEIGHT_CENTER) * _sag(
+        (y + C.NET_POST_Y) / (2 * C.NET_POST_Y)) for y in ys]
+    for k in range(n_v + 1):
+        _sub(worldbody, "geom", name="net_wire_v_%03d" % k, type="capsule",
+             fromto="0 %.4f 0.004 0 %.4f %.4f" % (ys[k], ys[k], tops[k]),
+             size="0.0028", **wire)
+    for j in range(n_h + 1):
+        zf = j / n_h
+        py, ph = -C.NET_POST_Y, C.NET_HEIGHT_POST
+        for i in range(1, n_seg + 1):
+            y = -C.NET_POST_Y + (2 * C.NET_POST_Y) * i / n_seg
+            t = i / n_seg
+            h = C.NET_HEIGHT_POST - (C.NET_HEIGHT_POST - C.NET_HEIGHT_CENTER) * _sag(t)
+            _sub(worldbody, "geom", name="net_wire_h_%02d_%02d" % (j, i), type="capsule",
+                 fromto="0 %.4f %.4f 0 %.4f %.4f" % (py, ph * zf + 0.004, y, h * zf + 0.004),
+                 size="0.0028", **wire)
+            py, ph = y, h
     for side in (-1, 1):
         _sub(worldbody, "geom", name="net_post_%s" % ("neg" if side < 0 else "pos"),
              pos="%.4f %.4f %.4f" % (C.NET_X, side * C.NET_POST_Y, C.NET_HEIGHT_POST / 2.0),
-             size="0.035 %.4f" % (C.NET_HEIGHT_POST / 2.0), type="cylinder", material="post_dark",
+             size="0.05 %.4f" % (C.NET_HEIGHT_POST / 2.0), type="cylinder", material="post_dark",
              contype="0", conaffinity="0", group="1")
-        _sub(worldbody, "geom", name="net_band_%s" % ("neg" if side < 0 else "pos"),
-             pos="%.4f %.4f %.4f" % (C.NET_X, side * (C.NET_POST_Y / 2.0), C.NET_HEIGHT_POST - 0.025),
-             size="0.006 %.4f 0.025" % (C.NET_POST_Y / 2.0), type="box", material="line_white",
-             contype="0", conaffinity="0", group="1")
-    _sub(worldbody, "geom", name="net_center_strap",
-         pos="%.4f 0 %.4f" % (C.NET_X, C.NET_HEIGHT_CENTER / 2.0),
-         size="0.006 0.02 %.4f" % (C.NET_HEIGHT_CENTER / 2.0), type="box", material="line_white",
-         contype="0", conaffinity="0", group="1")
 
 
 def _sag(t):
@@ -406,7 +439,7 @@ def build_full_court_xml():
     asset = ET.SubElement(mujoco, "asset")
     add_assets(asset)
     worldbody = ET.SubElement(mujoco, "worldbody")
-    ET.SubElement(worldbody, "light", name="court_light_key", pos="18 -14 22", dir="-0.55 0.45 -1",
+    ET.SubElement(worldbody, "light", name="court_light_key", pos="12 -33 29", dir=SUN_DIR,
                   directional="true", castshadow="true", diffuse="0.85 0.82 0.78",
                   specular="0.3 0.3 0.3")
     ET.SubElement(worldbody, "light", name="court_light_fill", pos="-16 12 18", dir="0.5 -0.4 -1",

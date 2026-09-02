@@ -55,8 +55,9 @@ def ensure_ball_texture():
     w, h = 1024, 512
     u = np.linspace(0.0, 1.0, w, endpoint=False)
     base = np.zeros((h, w, 3), dtype=np.uint8)
-    base[:, :] = np.array([203, 214, 42], dtype=np.uint8)
-    noise = np.random.default_rng(7).normal(0, 4, size=(h, w, 1))
+    # court-project tennis ball palette (0.815/0.615/0.085 - 0.876/0.682/0.112)
+    base[:, :] = np.array([210, 162, 24], dtype=np.uint8)
+    noise = np.random.default_rng(7).normal(0, 6, size=(h, w, 1))
     base = np.clip(base + noise, 0, 255).astype(np.uint8)
     v = np.linspace(0.0, 1.0, h)
     seam = 0.5 + 0.30 * np.sin(2 * np.pi * 2.0 * u + 0.4) * np.cos(np.pi * 0.9 * u)
@@ -285,8 +286,9 @@ def build_scene_string(robot=True, machine=True, ball=True,
          shininess="0.5")
 
     worldbody = _sub(mujoco, "worldbody")
-    _sub(worldbody, "light", name="court_light_key", pos="18 -14 22", dir="-0.55 0.45 -1",
-         directional="true", castshadow="true", diffuse="0.85 0.82 0.78", specular="0.3 0.3 0.3")
+    _sub(worldbody, "light", name="court_light_key", pos="12 -33 29",
+         dir=build_court.SUN_DIR, directional="true", castshadow="true",
+         diffuse="0.85 0.82 0.78", specular="0.3 0.3 0.3")
     _sub(worldbody, "light", name="court_light_fill", pos="-16 12 18", dir="0.5 -0.4 -1",
          directional="true", castshadow="false", diffuse="0.35 0.37 0.42", specular="0.1 0.1 0.1")
     build_court.add_ground(worldbody)

@@ -203,52 +203,68 @@ class ScriptedForehand:
         t_hit = float(t_swing[i_best])
         r_hit = r_swing[i_best]
         speed = float(np.linalg.norm(v_swing[i_best]))
-        lo, hi = 10.0, 30.0
+        # Tennis rules: the receiver may not volley — the feed must bounce once
+        # on the robot's side before the stroke. Plan the feed through one
+        # bounce so the ball rises into the contact point afterwards.
+        lo, hi = 8.0, 30.0
         plan = None
-        ball_t = None
-        for it in range(6):
+        contact = None
+        for it in range(8):
             speed_try = 0.5 * (lo + hi) if it else feed_speed
             try:
-                plan = self.env.machine.serve_through_point(
-                    r_hit, speed=speed_try, spin_rpm=feed_spin)
+                plan = plan_feed_for_contact(self.env, r_hit, speed=speed_try,
+                                             spin=feed_spin)
+                c = predict_ball_contact(plan, target_z=r_hit[2])
             except ValueError:
                 lo = speed_try
                 continue
-            ball_t = self.serve_t + plan["flight_time"]
+            if c is None:
+                lo = speed_try
+                continue
+            ball_t = self.serve_t + c["t"]
             err = ball_t - t_hit
             print("[scripted_forehand] feed iter %d: speed=%.1f ball_t=%.3f err=%+.3f"
                   % (it, speed_try, ball_t, err))
-            if abs(err) < 0.04:
+            contact = c
+            if abs(err) < 0.05:
                 break
             if err < 0:
                 hi = speed_try
             else:
                 lo = speed_try
-        swing_time = t_hit
-        for attempt in range(4):
-            plan = self.env.machine.serve_through_point(
-                r_hit, speed=0.5 * (lo + hi), spin_rpm=feed_spin)
-            ball_t = self.serve_t + plan["flight_time"]
-            dt_shift = ball_t - swing_time
-            self._build_swing(self.nominal_contact, swing_time + dt_shift, swing_span=0.35)
-            out = self._rehearse_full(plan, self.face_normal)
-            print("[scripted_forehand] tune %d: dt=%+.3f hit=%s crossed=%s net=%s"
-                  % (attempt, dt_shift, out["hit"], out["crossed"], out["net"]))
-            if out["hit"] and out["crossed"]:
-                swing_time = swing_time + dt_shift
+        if plan is None:
+            plan = plan_feed_for_contact(self.env, r_hit, speed=feed_speed, spin=feed_spin)
+            contact = predict_ball_contact(plan, target_z=r_hit[2])
+        if contact is not None:
+            ball_t = self.serve_t + contact["t"]
+        else:
+            ball_t = t_hit
+        # Timing scan against the full-physics rehearsal (shape kept fixed,
+        # only the time base moves, so each try is cheap).
+        self._build_swing(self.nominal_contact, ball_t, swing_span=0.35)
+        best = None
+        for round_ in range(2):
+            for dt_try in (0.0, 0.07, -0.07, 0.14, -0.14, 0.21, -0.21):
+                self.set_swing_time(ball_t + dt_try)
+                out = self._rehearse_full(plan, self.face_normal)
+                print("[scripted_forehand] tune r%d dt=%+.3f hit=%s crossed=%s net=%s"
+                      % (round_, dt_try, out["hit"], out["crossed"], out["net"]))
+                score = 0 if (out["hit"] and out["crossed"]) else (1 if out["hit"] else 2)
+                if best is None or score < best[0]:
+                    best = (score, ball_t + dt_try)
+                if score == 0:
+                    break
+            if best[0] == 0:
                 break
-            if not out["hit"]:
-                swing_time += 0.5 * dt_shift
-            else:
-                n_new = np.array([-0.85, -0.05, min(0.85, self.face_normal[2] + 0.12)])
-                n_new /= np.linalg.norm(n_new)
-                self.face_normal = n_new
-                swing_time += dt_shift
+            n_new = np.array([-0.85, -0.05, min(0.85, self.face_normal[2] + 0.12)])
+            n_new /= np.linalg.norm(n_new)
+            self.face_normal = n_new
+            self._build_swing(self.nominal_contact, best[1], swing_span=0.35)
+        self.set_swing_time(best[1])
         self.plan = plan
         self.contact_pos = r_hit.copy() if r_hit is not None else self.nominal_contact.copy()
-        self.t_contact = swing_time if swing_time is not None else serve_t + 1.75
+        self.t_contact = best[1]
         self.swing_speed = speed
-        self._build_swing(self.contact_pos, self.t_contact, swing_span=0.35)
 
     def _build_swing(self, contact_point, t_mid, swing_span=0.40):
         px, py = self.px, self.py
@@ -256,8 +272,10 @@ class ScriptedForehand:
             self.face_normal = np.array([-0.88, -0.10, 0.42])
             self.face_normal /= np.linalg.norm(self.face_normal)
         backswing = np.array([px - 0.15, py + 0.45, 1.02])
-        pre = contact_point + np.array([0.32, 0.14, 0.10])
-        post = contact_point + np.array([-0.68, 0.12, 0.12])
+        # long, fast strike arc so the racket carries real speed through the
+        # contact point (the smoothstep path dips to ~0 speed at waypoints)
+        pre = contact_point + np.array([0.55, 0.18, 0.06])
+        post = contact_point + np.array([-0.90, 0.10, 0.16])
         wrap = contact_point + np.array([-0.45, -0.30, 0.60])
         waypoints = [
             ("ready", np.array([px - 0.55, py + 0.12, 1.00])),
@@ -269,16 +287,18 @@ class ScriptedForehand:
             ("ready", np.array([px - 0.55, py + 0.12, 1.00])),
         ]
         t_c = t_mid
-        fast = 0.35 * swing_span / 0.40
-        times = [t_c - 10.0, t_c - 0.60 * swing_span / 0.40, t_c - fast, t_c,
-                 t_c + fast, t_c + 1.00 * swing_span / 0.40,
-                 t_c + 1.60 * swing_span / 0.40]
+        fast = 0.13
+        times = [t_c - 10.0, t_c - 0.55, t_c - fast, t_c,
+                 t_c + fast, t_c + 0.45,
+                 t_c + 0.95]
         m = self.env.model
         base_qpos = self.env.data.qpos.copy()
         joint_traj = []
         q_prev = self.ready
         for (name, target), t in zip(waypoints, times):
-            if name == "contact":
+            if name in ("pre", "contact", "post"):
+                # keep the face normal through the whole strike zone so the
+                # ball can only meet the string bed, never a turned-around face
                 q = solve_ik6d(m, base_qpos, self.site_id, target, self.qadr, self.dofadr,
                                q_prev, RIGHT_ARM_JOINTS, self.face_normal,
                                q_ref=q_prev, restarts=4)
@@ -288,8 +308,14 @@ class ScriptedForehand:
             q_prev = q
             joint_traj.append((t, q))
         waist_angles = [0.0, 0.42, 0.30, 0.05, -0.25, -0.42, 0.0]
-        self.joint_traj = joint_traj
-        self.waist_traj = [(t, a) for (t, _), a in zip(joint_traj, waist_angles)]
+        # shape (relative times) separated from the time base, so the timing
+        # scan can move the swing without redoing any IK
+        self._swing_rel = [(t - t_c, q) for (t, q) in joint_traj]
+        self._waist_rel = [(t - t_c, a) for (t, _), a in zip(joint_traj, waist_angles)]
+        self._swing_t = t_c
+
+    def set_swing_time(self, t_mid):
+        self._swing_t = t_mid
 
     def _rehearse_full(self, plan, face_normal):
         import mujoco as _mj
@@ -392,10 +418,10 @@ class ScriptedForehand:
     def _action_from_traj(self, obs):
         t = obs["time"]
         action = self.base_frozen.copy()
-        arm = self._interp(self.joint_traj, t, self.ready)
+        arm = self._interp(self._swing_rel, t - self._swing_t, self.ready)
         for k, adr in enumerate(self.qadr):
             action[self.env.joint_action_index[RIGHT_ARM_JOINTS[k]]] = arm[k]
-        waist = self._interp(self.waist_traj, t, 0.0, scalar=True)
+        waist = self._interp(self._waist_rel, t - self._swing_t, 0.0, scalar=True)
         action[self.waist_idx[0]] = waist
         return action
 

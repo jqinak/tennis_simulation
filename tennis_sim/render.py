@@ -103,7 +103,15 @@ class Recorder:
     def _update_cam(self, data, ball_pos=None, robot_pos=None):
         mode = self.camera_mode
         if mode == "broadcast":
-            set_free_cam(self.cam, (-11.0, 15.0, 5.5), (0.5, 0.0, 1.0))
+            # same view direction as the original broadcast angle, pulled back
+            # so the whole court (all four baselines/sidelines) stays in frame
+            set_free_cam(self.cam, (-14.45, 19.5, 6.85), (0.5, 0.0, 1.0))
+        elif mode == "robot_front":
+            # follow camera right in front of the robot, keeping the strokes
+            # large and clear in frame
+            base = robot_pos if robot_pos is not None else (10.9, 0.0)
+            set_free_cam(self.cam, (base[0] - 3.4, base[1] - 0.4, 1.6),
+                         (base[0] - 0.1, base[1] + 0.1, 0.95))
         elif mode == "side":
             set_free_cam(self.cam, (-9.0, 14.5, 2.4), (0.0, 0.0, 1.0))
         elif mode == "behind_robot":
