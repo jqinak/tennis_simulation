@@ -28,6 +28,8 @@ MACHINE_MATERIALS = {
 RACKET_MATERIALS = {
     "racket_frame_black": "0.040 0.040 0.045 1",
     "racket_grip_white": "0.93 0.93 0.93 1",
+    "fixture_plastic_dark": "0.13 0.13 0.145 1",
+    "fixture_plastic_accent": "0.85 0.45 0.10 1",
 }
 
 # Real 23-inch junior racket (ITF junior spec): overall length 0.5842 m,
@@ -152,6 +154,25 @@ def build_racket_xml():
     mount.append(body)
     _sub(body, "inertial", pos="0.331 0 0", mass="0.30",
          diaginertia="0.00082 0.0055 0.0063")
+    # ---- fixed-angle racket fixture (visual only) -----------------------
+    # molded bracket that clamps the wrist and presents the racket at the
+    # fixed 25-degree mount angle (ref. the real-robot fixture photos):
+    # wrist collar -> angled riser -> grip sleeve with a lock knob
+    _sub(body, "geom", name="fixture_wrist_collar", type="capsule",
+         fromto="-0.045 0 0 0.012 0 0", size="0.040",
+         material="fixture_plastic_dark", contype="0", conaffinity="0", group="1")
+    _sub(body, "geom", name="fixture_riser", type="capsule",
+         fromto="0.012 0 0 0.052 0 0", size="0.020",
+         material="fixture_plastic_dark", contype="0", conaffinity="0", group="1")
+    _sub(body, "geom", name="fixture_grip_sleeve", type="capsule",
+         fromto="0.052 0 0 0.115 0 0", size="0.021",
+         material="fixture_plastic_dark", contype="0", conaffinity="0", group="1")
+    _sub(body, "geom", name="fixture_lock_knob", type="cylinder",
+         pos="0.084 0 0.028", size="0.010 0.014", quat="0.7071 0 0.7071 0",
+         material="fixture_plastic_accent", contype="0", conaffinity="0", group="1")
+    _sub(body, "geom", name="fixture_collar_ring", type="capsule",
+         fromto="0.115 0 0 0.125 0 0", size="0.023",
+         material="fixture_plastic_accent", contype="0", conaffinity="0", group="1")
     _sub(body, "geom", name="racket_handle", type="capsule",
          fromto="%.3f 0 0 %.3f 0 0" % (RACKET_GRIP_X0, RACKET_GRIP_X1),
          size="0.016", material="racket_grip_white", contype="1", conaffinity="1", condim="3",
