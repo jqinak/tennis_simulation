@@ -1,0 +1,668 @@
+{
+  "onnx": {
+    "time_step_totals": [
+      119.0,
+      101.0,
+      88.0
+    ],
+    "joint_names": [
+      "left_hip_pitch_joint",
+      "left_hip_roll_joint",
+      "left_hip_yaw_joint",
+      "left_knee_joint",
+      "left_ankle_pitch_joint",
+      "left_ankle_roll_joint",
+      "right_hip_pitch_joint",
+      "right_hip_roll_joint",
+      "right_hip_yaw_joint",
+      "right_knee_joint",
+      "right_ankle_pitch_joint",
+      "right_ankle_roll_joint",
+      "waist_yaw_joint",
+      "waist_roll_joint",
+      "waist_pitch_joint",
+      "left_shoulder_pitch_joint",
+      "left_shoulder_roll_joint",
+      "left_shoulder_yaw_joint",
+      "left_elbow_joint",
+      "left_wrist_roll_joint",
+      "left_wrist_pitch_joint",
+      "left_wrist_yaw_joint",
+      "right_shoulder_pitch_joint",
+      "right_shoulder_roll_joint",
+      "right_shoulder_yaw_joint",
+      "right_elbow_joint",
+      "right_wrist_roll_joint",
+      "right_wrist_pitch_joint",
+      "right_wrist_yaw_joint"
+    ],
+    "default_joint_pos": [
+      -0.312,
+      0.0,
+      0.0,
+      0.669,
+      -0.363,
+      0.0,
+      -0.312,
+      0.0,
+      0.0,
+      0.669,
+      -0.363,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.2,
+      0.2,
+      0.0,
+      0.6,
+      0.0,
+      0.0,
+      0.0,
+      0.2,
+      -0.2,
+      0.0,
+      0.6,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "source_link_names": [
+      "'racket_contact'",
+      " 'racket_contact'",
+      " 'racket_contact'",
+      "'racket_contact'",
+      " 'racket_contact'",
+      " 'racket_contact'",
+      "'racket_contact'",
+      " 'racket_contact'",
+      " 'racket_contact'"
+    ],
+    "observation_names": [
+      "command",
+      "motion_anchor_ori_b",
+      "base_ang_vel",
+      "joint_pos",
+      "joint_vel",
+      "actions"
+    ],
+    "joint_damping": [
+      2.558,
+      6.309,
+      2.558,
+      6.309,
+      1.814,
+      1.814,
+      2.558,
+      6.309,
+      2.558,
+      6.309,
+      1.814,
+      1.814,
+      2.558,
+      1.814,
+      1.814,
+      0.907,
+      0.907,
+      0.907,
+      0.907,
+      0.907,
+      1.068,
+      1.068,
+      0.907,
+      0.907,
+      0.907,
+      0.907,
+      0.907,
+      1.068,
+      1.068
+    ],
+    "run_path": "local",
+    "command_names": [
+      "motion"
+    ],
+    "target_phase_starts": [
+      0.46,
+      0.46,
+      0.46,
+      0.401,
+      0.401,
+      0.401,
+      0.422,
+      0.422,
+      0.422
+    ],
+    "joint_stiffness": [
+      40.179,
+      99.098,
+      40.179,
+      99.098,
+      28.501,
+      28.501,
+      40.179,
+      99.098,
+      40.179,
+      99.098,
+      28.501,
+      28.501,
+      40.179,
+      28.501,
+      28.501,
+      14.251,
+      14.251,
+      14.251,
+      14.251,
+      14.251,
+      16.778,
+      16.778,
+      14.251,
+      14.251,
+      14.251,
+      14.251,
+      14.251,
+      16.778,
+      16.778
+    ],
+    "action_scale": [
+      0.548,
+      0.351,
+      0.548,
+      0.351,
+      0.439,
+      0.439,
+      0.548,
+      0.351,
+      0.548,
+      0.351,
+      0.439,
+      0.439,
+      0.548,
+      0.439,
+      0.439,
+      0.439,
+      0.439,
+      0.439,
+      0.439,
+      0.439,
+      0.075,
+      0.075,
+      0.439,
+      0.439,
+      0.439,
+      0.439,
+      0.439,
+      0.075,
+      0.075
+    ],
+    "target_phase_ends": [
+      0.468,
+      0.468,
+      0.468,
+      0.40900000000000003,
+      0.40900000000000003,
+      0.40900000000000003,
+      0.43,
+      0.43,
+      0.43
+    ],
+    "command_type": "multi_target",
+    "anchor_body_name": "pelvis",
+    "source_link_types": [
+      "'site'",
+      " 'site'",
+      " 'site'",
+      "'site'",
+      " 'site'",
+      " 'site'",
+      "'site'",
+      " 'site'",
+      " 'site'"
+    ],
+    "body_names": [
+      "pelvis",
+      "left_hip_roll_link",
+      "left_knee_link",
+      "left_ankle_roll_link",
+      "right_hip_roll_link",
+      "right_knee_link",
+      "right_ankle_roll_link",
+      "torso_link",
+      "left_shoulder_roll_link",
+      "left_elbow_link",
+      "left_wrist_yaw_link",
+      "right_shoulder_roll_link",
+      "right_elbow_link",
+      "right_wrist_yaw_link"
+    ],
+    "num_motions": 3,
+    "graph_inputs": [
+      [
+        "obs",
+        [
+          1,
+          164
+        ],
+        "tensor(float)"
+      ],
+      [
+        "which_motion",
+        [
+          1,
+          1
+        ],
+        "tensor(float)"
+      ],
+      [
+        "time_step",
+        [
+          1,
+          1
+        ],
+        "tensor(float)"
+      ]
+    ],
+    "graph_outputs": [
+      [
+        "actions",
+        [
+          1,
+          29
+        ],
+        "tensor(float)"
+      ],
+      [
+        "joint_pos",
+        [
+          1,
+          29
+        ],
+        "tensor(float)"
+      ],
+      [
+        "joint_vel",
+        [
+          1,
+          29
+        ],
+        "tensor(float)"
+      ],
+      [
+        "body_pos_w",
+        [
+          1,
+          14,
+          3
+        ],
+        "tensor(float)"
+      ],
+      [
+        "body_quat_w",
+        [
+          1,
+          14,
+          4
+        ],
+        "tensor(float)"
+      ],
+      [
+        "body_lin_vel_w",
+        [
+          1,
+          14,
+          3
+        ],
+        "tensor(float)"
+      ],
+      [
+        "body_ang_vel_w",
+        [
+          1,
+          14,
+          3
+        ],
+        "tensor(float)"
+      ]
+    ]
+  },
+  "motions": {
+    "user_forehand": {
+      "fps": {
+        "shape": [
+          1
+        ],
+        "dtype": "float64"
+      },
+      "joint_pos": {
+        "shape": [
+          119,
+          29
+        ],
+        "dtype": "float32"
+      },
+      "joint_vel": {
+        "shape": [
+          119,
+          29
+        ],
+        "dtype": "float32"
+      },
+      "body_pos_w": {
+        "shape": [
+          119,
+          31,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "body_quat_w": {
+        "shape": [
+          119,
+          31,
+          4
+        ],
+        "dtype": "float32"
+      },
+      "body_lin_vel_w": {
+        "shape": [
+          119,
+          31,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "body_ang_vel_w": {
+        "shape": [
+          119,
+          31,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "site_pos_w": {
+        "shape": [
+          119,
+          7,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "site_quat_w": {
+        "shape": [
+          119,
+          7,
+          4
+        ],
+        "dtype": "float32"
+      },
+      "_frame0_joint_pos": [
+        -0.3821338415145874,
+        0.21874594688415527,
+        -0.08294939994812012,
+        0.6343655586242676,
+        -0.09525294601917267,
+        -0.25503578782081604,
+        -0.4334426820278168,
+        -0.30530428886413574,
+        -0.2130846083164215,
+        0.5894636511802673,
+        0.06458520144224167,
+        0.26179999113082886,
+        0.14862434566020966,
+        0.0009999964386224747,
+        0.0010000000474974513,
+        0.07673477381467819,
+        0.28937360644340515,
+        -0.5107496380805969,
+        0.6146780252456665,
+        -0.6908931732177734,
+        0.007307073567062616,
+        -0.3450796902179718,
+        0.050207290798425674,
+        -0.23500977456569672,
+        0.36607128381729126,
+        0.4391876757144928,
+        1.2761056423187256,
+        0.03166824206709862,
+        0.3005734980106354
+      ],
+      "_pelvis_quat_w_frame0": [
+        0.9999822378158569,
+        -0.0009269237634725869,
+        0.005865284241735935,
+        -0.0007043375517241657
+      ],
+      "_pelvis_pos_w_frame0": [
+        -0.0008729849942028522,
+        0.00040919682942330837,
+        0.7844930291175842
+      ],
+      "_racket_contact_pos_w_contact_frame": null
+    },
+    "user_volley": {
+      "fps": {
+        "shape": [
+          1
+        ],
+        "dtype": "float64"
+      },
+      "joint_pos": {
+        "shape": [
+          101,
+          29
+        ],
+        "dtype": "float32"
+      },
+      "joint_vel": {
+        "shape": [
+          101,
+          29
+        ],
+        "dtype": "float32"
+      },
+      "body_pos_w": {
+        "shape": [
+          101,
+          31,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "body_quat_w": {
+        "shape": [
+          101,
+          31,
+          4
+        ],
+        "dtype": "float32"
+      },
+      "body_lin_vel_w": {
+        "shape": [
+          101,
+          31,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "body_ang_vel_w": {
+        "shape": [
+          101,
+          31,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "site_pos_w": {
+        "shape": [
+          101,
+          7,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "site_quat_w": {
+        "shape": [
+          101,
+          7,
+          4
+        ],
+        "dtype": "float32"
+      },
+      "_frame0_joint_pos": [
+        -0.8088279962539673,
+        0.609077513217926,
+        0.061656877398490906,
+        0.9518236517906189,
+        -0.23388968408107758,
+        -0.1989791840314865,
+        -0.5576003193855286,
+        -0.5567175149917603,
+        -0.2572783827781677,
+        0.8949176669120789,
+        -0.43928825855255127,
+        0.15037712454795837,
+        0.17678815126419067,
+        -0.0010000000474974513,
+        0.0010000000474974513,
+        0.4691341817378998,
+        0.47903454303741455,
+        -0.05820394679903984,
+        0.7286320924758911,
+        -0.9340991973876953,
+        0.055142033845186234,
+        -0.06513810902833939,
+        -0.007542967796325684,
+        -0.2997250556945801,
+        0.23460647463798523,
+        0.239364355802536,
+        1.3019410371780396,
+        -0.0777505412697792,
+        -0.22233033180236816
+      ],
+      "_pelvis_quat_w_frame0": [
+        0.9999518990516663,
+        0.0011830126168206334,
+        0.009523038752377033,
+        0.0020394253078848124
+      ],
+      "_pelvis_pos_w_frame0": [
+        -4.027094109915197e-05,
+        0.001528530614450574,
+        0.7806483507156372
+      ],
+      "_racket_contact_pos_w_contact_frame": null
+    },
+    "user_backhand": {
+      "fps": {
+        "shape": [
+          1
+        ],
+        "dtype": "float64"
+      },
+      "joint_pos": {
+        "shape": [
+          88,
+          29
+        ],
+        "dtype": "float32"
+      },
+      "joint_vel": {
+        "shape": [
+          88,
+          29
+        ],
+        "dtype": "float32"
+      },
+      "body_pos_w": {
+        "shape": [
+          88,
+          31,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "body_quat_w": {
+        "shape": [
+          88,
+          31,
+          4
+        ],
+        "dtype": "float32"
+      },
+      "body_lin_vel_w": {
+        "shape": [
+          88,
+          31,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "body_ang_vel_w": {
+        "shape": [
+          88,
+          31,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "site_pos_w": {
+        "shape": [
+          88,
+          7,
+          3
+        ],
+        "dtype": "float32"
+      },
+      "site_quat_w": {
+        "shape": [
+          88,
+          7,
+          4
+        ],
+        "dtype": "float32"
+      },
+      "_frame0_joint_pos": [
+        -0.8607184886932373,
+        0.48186811804771423,
+        0.1114371195435524,
+        1.3300360441207886,
+        -0.45495104789733887,
+        -0.11000695079565048,
+        -0.6353358626365662,
+        -0.814885675907135,
+        -0.10421055555343628,
+        1.328456163406372,
+        -0.6576607823371887,
+        0.11517645418643951,
+        0.008654488250613213,
+        0.0010000000474974513,
+        0.0010000000474974513,
+        0.21514177322387695,
+        0.3900860548019409,
+        -0.5893047451972961,
+        0.48345112800598145,
+        -1.1003530025482178,
+        0.27613770961761475,
+        -0.24096614122390747,
+        0.06826770305633545,
+        -0.20931169390678406,
+        0.5014641284942627,
+        0.15067380666732788,
+        1.493127465248108,
+        0.20925694704055786,
+        0.2654624283313751
+      ],
+      "_pelvis_quat_w_frame0": [
+        0.9996944665908813,
+        -0.001956057734787464,
+        0.019943131133913994,
+        0.01446950901299715
+      ],
+      "_pelvis_pos_w_frame0": [
+        -0.0014066467992961407,
+        -0.002178118098527193,
+        0.7670987248420715
+      ],
+      "_racket_contact_pos_w_contact_frame": null
+    }
+  }
+}

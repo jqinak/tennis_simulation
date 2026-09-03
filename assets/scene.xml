@@ -709,7 +709,7 @@
       <inertial pos="0 0 0" mass="0.0577" diaginertia="4.32100000e-05 4.32100000e-05 4.32100000e-05" />
       <geom name="ball_geom" type="sphere" size="0.0335" material="ball_mat" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" />
     </body>
-    <body name="pelvis" pos="6.500000 0.000000 0.790000" childclass="g1" quat="0.000000 0.000000 0.000000 1.000000">
+    <body name="pelvis" pos="10.900000 0.000000 0.790000" childclass="g1" quat="0.000000 0.000000 0.000000 1.000000">
       <inertial pos="0 0 -0.07605" quat="1 0 -0.000399148 0" mass="3.813" diaginertia="0.010549 0.0093089 0.0079184" />
       <freejoint name="floating_base_joint" />
       <geom class="visual" material="black" mesh="pelvis" />
@@ -990,6 +990,6 @@
     <accelerometer site="imu_in_pelvis" name="imu-pelvis-linear-acceleration" cutoff="157" noise="0.01" />
   </sensor>
   <keyframe>
-    <key name="stand" qpos="0.0000 -8.0000 0.0335 1 0 0 0 6.5000 0.0000 0.7900 0.000000 0.000000 0.000000 1.000000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0.2 0 1.28 0 0 0 0.2 -0.2 0 1.28 0 0 0" ctrl="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0.2 0 1.28 0 0 0 0.2 -0.2 0 1.28 0 0 0" />
+    <key name="stand" qpos="0.0000 -8.0000 0.0335 1 0 0 0 10.9000 0.0000 0.7900 0.000000 0.000000 0.000000 1.000000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0.2 0 1.28 0 0 0 0.2 -0.2 0 1.28 0 0 0" ctrl="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0.2 0 1.28 0 0 0 0.2 -0.2 0 1.28 0 0 0" />
   </keyframe>
 </mujoco>
