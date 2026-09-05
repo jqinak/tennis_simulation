@@ -2,3 +2,5 @@
 __pycache__/
 *.pyc
 outputs/qa/
+.ssh_key
+.ssh_key.pub

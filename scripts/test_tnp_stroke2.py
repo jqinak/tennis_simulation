@@ -43,6 +43,7 @@ def run_once_rest(args, env, policy, m_idx, plan, t_arrive, record=False):
                           camera=args.camera) if record else None
     served = {"done": False}
     rest_n = 0
+    out_n = 0
     hit = False
     info_evt = {"all_events": []}
     for k in range(int((args.seconds + 6.0) / env.dt)):
@@ -63,6 +64,13 @@ def run_once_rest(args, env, policy, m_idx, plan, t_arrive, record=False):
             rest_n = rest_n + 1 if (v < 0.15 and w < 2.0 and grounded) else 0
             if rest_n >= 40:
                 break
+        bp = obs["ball_pos"]
+        if k and (abs(bp[0]) > 21 or abs(bp[1]) > 11 or bp[2] < -3):
+            out_n += 1
+            if out_n >= 25:
+                break
+        else:
+            out_n = 0
         if term:
             break
     if rec is not None:
@@ -154,6 +162,7 @@ def run_once(args, env, policy, m_idx, contact, record=False):
                           camera=args.camera) if record else None
     served = {"done": False}
     rest_n = 0
+    out_n = 0
     hit = False
     for k in range(int((args.seconds + 6.0) / env.dt)):
         t = k * env.dt
@@ -173,6 +182,13 @@ def run_once(args, env, policy, m_idx, contact, record=False):
             rest_n = rest_n + 1 if (v < 0.15 and w < 2.0 and grounded) else 0
             if rest_n >= 40:
                 break
+        bp = obs["ball_pos"]
+        if k and (abs(bp[0]) > 21 or abs(bp[1]) > 11 or bp[2] < -3):
+            out_n += 1
+            if out_n >= 25:
+                break
+        else:
+            out_n = 0
         if term:
             break
     if rec is not None:

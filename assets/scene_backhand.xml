@@ -52,6 +52,8 @@
     <material name="machine_barrel" rgba="0.30 0.32 0.34 1" specular="0.4" shininess="0.5" />
     <material name="racket_frame_black" rgba="0.040 0.040 0.045 1" specular="0.45" shininess="0.6" />
     <material name="racket_grip_white" rgba="0.93 0.93 0.93 1" specular="0.45" shininess="0.6" />
+    <material name="fixture_plastic_dark" rgba="0.13 0.13 0.145 1" specular="0.45" shininess="0.6" />
+    <material name="fixture_plastic_accent" rgba="0.85 0.45 0.10 1" specular="0.45" shininess="0.6" />
     <material name="black" rgba="0.2 0.2 0.2 1" />
     <material name="metal" rgba="0.7 0.7 0.7 1" />
     <mesh file="g1/assets/pelvis.STL" />
@@ -896,6 +898,11 @@
                           <body name="racket_mount" pos="0.052 0 0" quat="0.976296 0.216440 0.000000 0.000000">
                             <body name="racket" quat="0.300503 -0.683352 0.267845 -0.609087">
                               <inertial pos="0.331 0 0" mass="0.30" diaginertia="0.00082 0.0055 0.0063" />
+                              <geom name="fixture_wrist_collar" type="capsule" fromto="-0.045 0 0 0.012 0 0" size="0.040" material="fixture_plastic_dark" contype="0" conaffinity="0" group="1" />
+                              <geom name="fixture_riser" type="capsule" fromto="0.012 0 0 0.052 0 0" size="0.020" material="fixture_plastic_dark" contype="0" conaffinity="0" group="1" />
+                              <geom name="fixture_grip_sleeve" type="capsule" fromto="0.052 0 0 0.115 0 0" size="0.021" material="fixture_plastic_dark" contype="0" conaffinity="0" group="1" />
+                              <geom name="fixture_lock_knob" type="cylinder" pos="0.084 0 0.028" size="0.010 0.014" quat="0.7071 0 0.7071 0" material="fixture_plastic_accent" contype="0" conaffinity="0" group="1" />
+                              <geom name="fixture_collar_ring" type="capsule" fromto="0.115 0 0 0.125 0 0" size="0.023" material="fixture_plastic_accent" contype="0" conaffinity="0" group="1" />
                               <geom name="racket_handle" type="capsule" fromto="0.020 0 0 0.200 0 0" size="0.016" material="racket_grip_white" contype="1" conaffinity="1" condim="3" friction="0.7 0.005 0.0001" solref="0.001 1.0" solimp="0.95 0.99 0.001 0.5 2" group="1" />
                               <geom name="racket_butt" type="capsule" fromto="0 0 0 0.035 0 0" size="0.019" material="racket_frame_black" contype="0" conaffinity="0" group="1" />
                               <geom name="racket_throat_-1" type="capsule" fromto="0.196 -0.030 0 0.302 -0.079 0" size="0.012" material="racket_frame_black" contype="0" conaffinity="0" group="1" />
